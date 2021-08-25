@@ -2,12 +2,12 @@
   <q-page class="bg-blue">
     <div>
       <h2 class="flex flex-center text-white" style="weight-bolder">
-        Signing Page
+        SIGN UP Page
       </h2>
     </div>
     <div class="q-pa-md">
       <div class="q-gutter-md" style="max-width: 300px">
-        <q-card class="absolute-center" style="width: 500px">
+        <q-card class="absolute-center" style="width: 450px">
           <div class="q-gutter-md q-pa-md">
             <q-input filled v-model="Fname" label="FULL NAME" />
             <q-input filled v-model="ad" label="ADDRESS" />
@@ -45,18 +45,10 @@
             </q-input>
           </div>
 
-          <div class="q-pa-md q-gutter-sm flex flex-center">
-            <div>
-              <q-btn
-                color="blue"
-                text-color="white"
-                label="CONFIRM"
-                to="Login"
-                style="width: 250px"
-              />
-             <div class="q-pa-md">
-    <q-btn-dropdown  style="width: 250px" color="blue" label="Select User">
-      <q-list>
+         
+             <div class="q-pa-md flex flex-center">
+    <q-btn-dropdown  style="width: 200px" color="blue" label="Select User">
+      <q-list class="bg-blue text-white ">
         <q-item clickable v-close-popup>
           <q-item-section>
             <q-item-label>Admin</q-item-label>
@@ -76,6 +68,15 @@
         </q-item>
       </q-list>
     </q-btn-dropdown>
+     <div class="q-pa-md q-gutter-sm flex flex-center">
+            <div class="flex flex-center">
+              <q-btn
+                color="blue"
+                text-color="white"
+                label="CONFIRM"
+                to="Login"
+                style="width: 200px"
+              />
   </div>
             
             </div>
