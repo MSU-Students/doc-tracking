@@ -1,13 +1,13 @@
 <template>
-  <q-page class="bg-blue">
+  <q-page class="bg-image">
     <div>
-      <h2 class="flex flex-center text-white" style="weight-bolder">
-        SIGN UP Page
+      <h2 class=" text-black flex flex-center text-white" style="weight-bolder">
+        SIGN UP PAGE
       </h2>
     </div>
     <div class="q-pa-md">
       <div class="q-gutter-md" style="max-width: 300px">
-        <q-card class="absolute-center" style="width: 450px">
+        <q-card class="absolute-center bg-blue-5" style="width: 450px">
           <div class="q-gutter-md q-pa-md">
             <q-input filled v-model="Fname" label="FULL NAME" />
             <q-input filled v-model="ad" label="ADDRESS" />
@@ -15,7 +15,7 @@
             <q-input filled v-model="uname" label="USERNAME" />
 
             <q-input
-              v-model="password"
+              v-model="pass"
               filled
               :type="isPwd ? 'password' : 'pass'"
               label="PASSWORD"
@@ -45,40 +45,28 @@
             </q-input>
           </div>
 
-         
-             <div class="q-pa-md flex flex-center">
-    <q-btn-dropdown  style="width: 200px" color="blue" label="Select User">
-      <q-list class="bg-blue text-white ">
-        <q-item clickable v-close-popup>
-          <q-item-section>
-            <q-item-label>Admin</q-item-label>
-          </q-item-section>
-        </q-item>
-
-        <q-item clickable v-close-popup>
-          <q-item-section>
-            <q-item-label>Client</q-item-label>
-          </q-item-section>
-        </q-item>
-
-        <q-item clickable v-close-popup>
-          <q-item-section>
-            <q-item-label>User</q-item-label>
-          </q-item-section>
-        </q-item>
-      </q-list>
-    </q-btn-dropdown>
-     <div class="q-pa-md q-gutter-sm flex flex-center">
-            <div class="flex flex-center">
-              <q-btn
-                color="blue"
-                text-color="white"
-                label="CONFIRM"
-                to="Login"
-                style="width: 200px"
-              />
-  </div>
-            
+          <div class="q-pa-xs flex flex-center bg-blue-5">
+            <div class="q-pa-md" style="width: 300px">
+              <div class="q-gutter-md bg-blue" >
+                <q-select
+                  color="black" 
+                  filled
+                  v-model="model"
+                  :options="options"
+                  label="STATUS"
+                />
+              </div>
+            </div>
+            <div class="q-pa-xs q-gutter-sm flex flex-center">
+              <div class="flex flex-center">
+                <q-btn
+                  color="blue"
+                  text-color="black"
+                  label="CONFIRM"
+                  to="Login"
+                  style="width: 300px"
+                />
+              </div>
             </div>
           </div>
         </q-card>
@@ -99,7 +87,10 @@ export default {
       uname: '',
       pass: '',
       password: '',
-      isPwd: ref(false),
+      isPwd: ref(true),
+      model: ref(null),
+
+      options: ['Employee', 'Client'],
     };
   },
 };
