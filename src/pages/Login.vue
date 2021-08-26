@@ -1,13 +1,13 @@
 <template>
-  <q-page class="bg-blue">
+  <q-page class="bg-image">
     <div>
-      <h2 class="flex flex-center text-white" style="weight-bolder">
+      <h2  class="flex flex-center text-black" style="weight-bolder">
         DOCUMENT TRACKING SYSTEM
       </h2>
     </div>
-    <div class="q-pa-md">
+    <div class="q-pa-md" >
       <div class="q-gutter-md" style="width: 300px">
-        <q-card class="absolute-center" style="width: 450px">
+        <q-card class="absolute-center bg-blue-5" style="width: 450px">
           <div class="q-gutter-md q-pa-md">
             <q-input filled v-model="text" label="Username">
               <template v-slot:prepend>
@@ -38,7 +38,6 @@
                   <q-checkbox v-model="right" label="Remember my Password" />
                 </div>
 
-                <div class="q-px-sm"></div>
                 <div class="q-pa-md text-center">
                   <div class="q-px-sm">
                     Select User As <strong>{{ shape }}</strong>
@@ -49,19 +48,19 @@
                         val="Employee"
                         label="Employee"
                       />
-                      <q-radio v-model="shape" val="Admin" label="Admin" />
 
                       <div class="q-pa-md q-gutter-md flex flex-center">
                         <div>
                           <q-btn
-                            color="blue"
-                            text-color="white"
+                            color="blue-5"
+                            text-color="black"
                             label="Log In"
                             style="width: 300px"
                           />
                         </div>
                         <q-btn
-                          color="blue"
+                        text-color="black"
+                          color="blue-5"
                           label="Sign Up"
                           to="Signingup"
                           style="width: 300px"
