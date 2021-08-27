@@ -1,13 +1,24 @@
 <template>
-  <q-page class="bg-blue">
-      <div class="col">
+
+  <q-page class="bg-blue-4">
+    <div class="col">
+      <q-header elevated="q-px-lg q-py-md">
+        <q-toolbar class="bg-white">
           <q-card>
-              <img class="col text-center q-pt-md"
-              src="~assets/images/image.jpg"
-              style="height: 500"
-              />
+           
+            <img
+              class="col text-center q-pt-md"
+              src="~assets/image10.png"
+              style="height: 100px; width: 70px"
+              
+            />
+             <div class="text-center text-h3 text-bold text-arial text-brown q-pt-lg q-gutter-md flex flex-center">
+      Welcome to the MSU Document Tracking System
+    </div>
           </q-card>
-      </div>
+        </q-toolbar>
+      </q-header>
+    </div>
     <div class="text-center text-h3 text-bold text-arial text-brown q-pt-lg">
       Welcome to the MSU Document Tracking System
     </div>
