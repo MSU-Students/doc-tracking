@@ -7,15 +7,16 @@
           <q-card>
            
             <img
-              class="col text-center q-pt-md"
+              class="col q-pt-md"
               src="~assets/image10.png"
               style="height: 100px; width: 70px"
-              
+            
             />
-             <div class="text-center text-h3 text-bold text-arial text-brown q-pt-lg q-gutter-md flex flex-center">
-      Welcome to the MSU Document Tracking System
-    </div>
+            
           </q-card>
+           <div class="q-pl-xl textcenter text-h3 text-bold text-arial text-brown  ">
+      Welcome to the MSU Document Tracking System
+    </div> 
         </q-toolbar>
       </q-header>
     </div>
