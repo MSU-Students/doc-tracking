@@ -1,28 +1,18 @@
 <template>
+  <q-page class="bg-blue-3">
+    <q-header>
+      <q-toolbar class="bg-white">
+        <img src="~assets/Logo_MSU60th.jpg" style="height: 70px; width: 70px" />
 
-  <q-page class="bg-blue-4">
-    <div class="col">
-      <q-header elevated="q-px-lg q-py-md">
-        <q-toolbar class="bg-white">
-          <q-card>
-           
-            <img
-              class="col q-pt-md"
-              src="~assets/image10.png"
-              style="height: 100px; width: 70px"
-            
-            />
-            
-          </q-card>
-           <div class="q-pl-xl textcenter text-h3 text-bold text-arial text-brown  ">
+        <div class="text-h3 text-bold text-broadway text-brown absolute-center">
+          MSU Document Tracking System
+        </div>
+      </q-toolbar>
+    </q-header>
+     
+    <div class="text-center text-h3 text-bold text-arial text-brown q-pt-lg absolute-bottom">
       Welcome to the MSU Document Tracking System
-    </div> 
-        </q-toolbar>
-      </q-header>
-    </div>
-    <div class="text-center text-h3 text-bold text-arial text-brown q-pt-lg">
-      Welcome to the MSU Document Tracking System
-    </div>
+    
 
     <div class="text-center text-h6 text-arial text-brown q-pa-lg">
       The Document Tracking System (DTS) of Mindanao State University Main
@@ -31,5 +21,7 @@
       information on the originating and receiving office and personnel, as well
       as the time elapsed between departments.
     </div>
+    </div>
+   
   </q-page>
 </template>
