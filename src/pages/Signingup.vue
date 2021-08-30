@@ -12,14 +12,13 @@
       <q-card class="absolute-center bg-white" style="width: 500px">
         <div class="q-gutter-md q-pa-md">
           <div>
-        <h4 class="flex flex-center text-blue text-bold">
-          Create Account
-        </h4>
-      </div>
-          <q-input class="bg-blue-3" filled v-model="Fname" label="NAME" />
-          <q-input class="bg-blue-3" filled v-model="em" label="EMAIL" />
+            <h4 class="flex flex-center text-blue text-bold">Create Account</h4>
+          </div>
+          <q-input class="bg-blue-3" filled v-model="Fname" label="FULL NAME" />
+          <q-input class="bg-blue-3" filled v-model="em" label="EMAIL" suffix="@gmail.com"/>
 
-          <q-select class="bg-blue-3"
+          <q-select
+            class="bg-blue-3"
             color="black"
             filled
             v-model="model"
@@ -27,7 +26,8 @@
             label="STATUS"
           />
 
-          <q-input class="bg-blue-3"
+          <q-input
+            class="bg-blue-3"
             v-model="pass"
             filled
             :type="isPwd ? 'password' : 'pass'"
@@ -42,7 +42,8 @@
             </template>
           </q-input>
 
-          <q-input class="bg-blue-3"
+          <q-input
+            class="bg-blue-3"
             v-model="password"
             filled
             :type="isPwd ? 'password' : 'pass'"
@@ -59,13 +60,13 @@
         </div>
         <div class="q-pa-xl q-gutter-md flex flex-center">
           <q-btn
-                outline
-                rounded
-                color="primary"
-                label="Sign Up" to="Login"
-                style="width: 300px"
-              />
-         
+            outline
+            rounded
+            color="primary"
+            label="Sign Up"
+            to="Login"
+            style="width: 300px"
+          />
         </div>
       </q-card>
     </div>
