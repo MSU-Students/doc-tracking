@@ -1,15 +1,25 @@
 <template>
   <q-page class="bg-image">
-    <div>
-      <h3 class="text-black text-white" style="weight-bolder">SIGN UP here!</h3>
-    </div>
+    <q-header>
+      <q-toolbar class="bg-white">
+        <div class="text-h3 text-bold text-broadway text-pink absolute-center">
+          Document Tracking System
+        </div>
+      </q-toolbar>
+    </q-header>
+
     <div class="q-pa-md">
-      <q-card class="absolute-center bg-blue-3" style="width: 500px">
-        <div class="q-gutter-xs q-pa-md">
-          <q-input filled v-model="Fname" label="FULL NAME" />
-          <q-input filled v-model="em" label="EMAIL" />
-          <q-input filled v-model="uname" label="USERNAME" />
-          <q-select
+      <q-card class="absolute-center bg-white" style="width: 500px">
+        <div class="q-gutter-md q-pa-md">
+          <div>
+        <h4 class="flex flex-center text-blue text-bold">
+          Create Account
+        </h4>
+      </div>
+          <q-input class="bg-blue-3" filled v-model="Fname" label="NAME" />
+          <q-input class="bg-blue-3" filled v-model="em" label="EMAIL" />
+
+          <q-select class="bg-blue-3"
             color="black"
             filled
             v-model="model"
@@ -17,7 +27,7 @@
             label="STATUS"
           />
 
-          <q-input
+          <q-input class="bg-blue-3"
             v-model="pass"
             filled
             :type="isPwd ? 'password' : 'pass'"
@@ -32,7 +42,7 @@
             </template>
           </q-input>
 
-          <q-input
+          <q-input class="bg-blue-3"
             v-model="password"
             filled
             :type="isPwd ? 'password' : 'pass'"
@@ -49,15 +59,13 @@
         </div>
         <div class="q-pa-xl q-gutter-md flex flex-center">
           <q-btn
-            class="glossy"
-            rounded
-            outline
-            color="blue"
-            text-color="black"
-            label="CONFIRM"
-            to="Login"
-            style="width: 250px"
-          />
+                outline
+                rounded
+                color="primary"
+                label="Sign Up" to="Login"
+                style="width: 300px"
+              />
+         
         </div>
       </q-card>
     </div>
