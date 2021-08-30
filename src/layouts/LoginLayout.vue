@@ -10,9 +10,11 @@
 
 <style>
 .bg-image {
-  background-image: url(../assets/images/image9.jpg);
+  background-image: url(../assets/image14.jpg);
   background-blend-mode: overlay;
   background-position: center;
   background-size: 100%;
 }
+
+
 </style>
