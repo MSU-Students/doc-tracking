@@ -5,11 +5,12 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     component: () => import('layouts/LoginLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Index.vue') },
-      { path: 'Login', component: () => import('pages/Login.vue') },
-      { path: 'Signingup', component: () => import('pages/Signingup.vue') },
-      { path: 'LandingPage', component: () => import('pages/LandingPage.vue')}
-    ],
+      { path: 'Index', component: () => import('pages/Index.vue') },
+      
+      { path: 'Signingup', component: () => import('pages/Signingup.vue')},
+      { path: 'LandingPage', component: () => import('pages/LandingPage.vue')},
+      { path: 'Login', component: () => import('pages/Login.vue')},
+     ],
   },
 
   // Always leave this as last one,
