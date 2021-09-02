@@ -2,13 +2,7 @@
   <q-page class="bg-image">
     <q-header>
       <q-toolbar class="bg-white">
-        <q-btn
-          class="absolute-left"
-          flat
-          style="color: #ff0080"
-          label="Sign Up"
-          to="Signingup"
-        />
+        
 
         <div class="text-h3 text-bold text-broadway text-pink absolute-center">
           Document Tracking System
@@ -18,7 +12,7 @@
 
     <div
       class="q-gutter-md q-pa-md absolute-center bg-white"
-      style="width: 450px; height: 500px"
+      style="width: 450px; height: 550px"
     >
       <div>
         <h4 class="flex flex-center text-blue text-bold">
@@ -59,14 +53,25 @@
           <div class="q-gutter-xs">
             <q-radio v-model="shape" val="Client" label="Client" />
             <q-radio v-model="shape" val="Employee" label="Employee" />
-            <div class="q-pa-lg">
+            <div class="q-pa-lg q-gutter-md">
               <q-btn
                 outline
                 rounded
                 color="primary"
                 label="LOG IN"
                 style="width: 300px"
+             
               />
+             <q-btn
+                outline
+                rounded
+                color="primary"
+                label="SIGN UP" to="Signingup"
+                style="width: 300px"
+             
+              />
+              
+              
             </div>
           </div>
         </div>
