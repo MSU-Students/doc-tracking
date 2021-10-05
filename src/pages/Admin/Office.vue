@@ -178,9 +178,7 @@
 </template>
 <script lang="ts">
 import { Vue, Options } from 'vue-class-component';
-interface IRow {
-  name: string;
-}
+
 @Options({})
 export default class ManageAccount extends Vue {
   columns = [

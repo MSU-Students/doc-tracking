@@ -1,25 +1,17 @@
 <template>
-  <div class="q-pa-md absolute-center">
-    <div class="q-gutter-y-md column" style="width: 600px">
-     
-      <q-input class="text-italic" filled v-model="ph" placeholder="Enter barcode here" />
-      <q-btn outline style="color: goldenrod;" color="grey-4" text-color="primary" glossy unelevated icon="shopping_cart" label="Track" />
-      
-    
-      
-    </div>
+  <div class="q-pa-md q-gutter-sm">
+    <q-avatar color="red" text-color="white" icon="directions" />
+    <q-avatar color="primary" text-color="white">J</q-avatar>
+    <q-avatar
+      size="100px"
+      font-size="52px"
+      color="teal"
+      text-color="white"
+      icon="directions"
+    />
+    <q-avatar size="24px" color="orange">J</q-avatar>
+    <q-avatar>
+      <img src="https://cdn.quasar.dev/img/avatar.png" />
+    </q-avatar>
   </div>
 </template>
-<script>
-import { ref } from 'vue'
-
-export default {
-  setup () {
-    return {
-      text: ref(''),
-      ph: ref(''),
-      dense: ref(false)
-    }
-  }
-}
-</script>
