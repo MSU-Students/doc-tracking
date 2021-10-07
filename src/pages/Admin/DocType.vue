@@ -45,31 +45,14 @@
             <q-dialog v-model="addUser">
               <q-card style="width: 350px">
                 <q-card-section class="row">
-                  <div class="text-h6">Add User</div>
+                  <div class="text-h6">Update Document Type</div>
                   <q-space />
                   <q-btn flat round dense icon="close" v-close-popup />
                 </q-card-section>
 
                 <q-card-section class="q-gutter-md">
-                  <q-input outlined v-model="name" label="First Name" />
-                  <q-input outlined v-model="name" label="Middle Initial" />
-                  <q-input outlined v-model="name" label="Last Name" />
-                  <q-input outlined v-model="name" label="Office" />
-                  <q-input
-                    outlined
-                    v-model="email"
-                    label="Email"
-                    type="email"
-                  />
-                  <q-input outlined v-model="username" label="Username" />
-                  <q-input outlined v-model="password" label="Password" />
-
-                  <q-select
-                    outlined
-                    v-model="role"
-                    :options="options"
-                    label="Roles"
-                  />
+                  <q-input outlined v-model="name" label="TITLE" />
+                  
                 </q-card-section>
 
                 <q-card-actions align="right">
@@ -111,23 +94,8 @@
                     </q-card-section>
 
                     <q-card-section class="q-gutter-md">
-                      <q-input outlined v-model="name" label="First Name" />
-                      <q-input outlined v-model="name" label="Middle Initial" />
-                      <q-input outlined v-model="name" label="Last Name" />
-                      <q-input outlined v-model="username" label="Username" />
-                      <q-input outlined v-model="password" label="Password" />
-                      <q-input
-                        outlined
-                        v-model="email"
-                        label="Email"
-                        type="email"
-                      />
-                      <q-select
-                        outlined
-                        v-model="role"
-                        :options="options"
-                        label="Roles"
-                      />
+                      <q-input outlined v-model="name" label="TITLE" />
+                      
                     </q-card-section>
 
                     <q-card-actions align="right">
@@ -200,21 +168,19 @@ export default class ManageAccount extends Vue {
       label: 'CATEGORY',
       field: 'category',
     },
-
-    { name: 'action', align: 'center', label: 'Action', field: 'action' },
   ];
   rows = [
     {
       category: 'Contract of Service',
-      action: 'blabla',
+     
     },
     {
       category: 'Leave',
-      action: 'blabla',
+      
     },
     {
       category: 'Communication Letter',
-      action: 'blabla',
+      
     },
   ];
   dialog = false;

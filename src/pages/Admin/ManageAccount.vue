@@ -1,19 +1,19 @@
 <template>
   <q-page class="bg-image">
     <div class="q-pa-md">
-      <div class="text-h4 text-bold text-white">
+      <div class="text-h4 text-bold">
         <q-icon
           name="account_circle"
           color="light-blue-6"
           style="font-size: 4rem"
         />
-        Account Management
+        USERS
       </div>
 
       <br />
 
       <q-table
-        title="Account List"
+        title="Records"
         :rows="rows"
         :columns="columns"
         row-key="name"
@@ -194,59 +194,42 @@ interface IRow {
 @Options({})
 export default class ManageAccount extends Vue {
   columns = [
+     {
+      name: 'username',
+      align: 'center',
+      label: 'USERNAME',
+      field: 'document',
+    },
     {
       name: 'name',
-      required: true,
-      label: 'Name',
-      align: 'left',
-      field: (row: IRow) => row.name,
-      format: (val: string) => `${val}`,
-    },
-    {
-      name: 'email',
       align: 'center',
-      label: 'Email',
-      field: 'email',
+      label: 'NAME',
+      field: 'document',
     },
+    { name: 'role', align: 'center', label: 'RULE', field: 'type' },
     {
-      name: 'dateCreated',
+      name: 'office',
       align: 'center',
-      label: 'Date Created',
-      field: 'dateCreated',
+      label: 'OFFICE',
+      field: 'datetime',
     },
-    { name: 'role', align: 'center', label: 'Role', field: 'role' },
-    { name: 'status', align: 'center', label: 'Status', field: 'status' },
-    {
-      name: 'lastLogin',
-      align: 'center',
-      label: 'Last Login',
-      field: 'lastLogin',
-    },
+
+    { name: 'status', align: 'center', label: 'STATUS', field: 'action' },
   ];
   rows = [
     {
-      name: 'Inshidar P. Panganting',
-      email: 'dar.midadari@gmail.com',
-      dateCreated: 'September 02, 2021',
-      role: 'Admin',
-      status: 'Active',
-      lastLogin: '09 / 04 / 2021',
+      username: 'admin',
+      name: 'Luffy',
+      role: 'Administrator',
+      office: 'Accounting',
+      
     },
     {
-      name: 'Inshirah P. Panganting',
-      email: 'panganting.i@gmail.com',
-      dateCreated: 'August 31, 2021',
+      username: 'user1',
+      name: 'Sanchi',
       role: 'Employee',
-      status: 'Active',
-      lastLogin: '09/ 01 / 2021',
-    },
-    {
-      name: 'Intizar P. Panganting',
-      email: 'panganting.i@gmail.com',
-      dateCreated: 'August 31, 2021',
-      role: 'Employee',
-      status: 'Active',
-      lastLogin: '09/ 01 / 2021',
+      office: 'Engineering',
+      
     },
   ];
   dialog = false;
