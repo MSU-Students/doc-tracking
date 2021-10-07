@@ -63,7 +63,7 @@
             outline
             rounded
             color="primary"
-            label="Sign Up"
+            label="Register"
             to="Login"
             style="width: 300px"
           />
