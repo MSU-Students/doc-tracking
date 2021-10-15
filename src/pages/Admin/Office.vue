@@ -88,29 +88,14 @@
               <q-dialog v-model="editRow">
                 <q-card style="width: 350px">
                   <q-card-section class="row">
-                    <div class="text-h6">Edit User</div>
+                    <div class="text-h6">Edit Office</div>
                     <q-space />
                     <q-btn flat round dense icon="close" v-close-popup />
                   </q-card-section>
 
                   <q-card-section class="q-gutter-md">
-                    <q-input outlined v-model="name" label="First Name" />
-                    <q-input outlined v-model="name" label="Middle Initial" />
-                    <q-input outlined v-model="name" label="Last Name" />
-                    <q-input outlined v-model="username" label="Username" />
-                    <q-input outlined v-model="password" label="Password" />
-                    <q-input
-                      outlined
-                      v-model="email"
-                      label="Email"
-                      type="email"
-                    />
-                    <q-select
-                      outlined
-                      v-model="role"
-                      :options="options"
-                      label="Roles"
-                    />
+                    <q-input outlined v-model="name"  />
+                    
                   </q-card-section>
 
                   <q-card-actions align="right">
@@ -177,22 +162,18 @@ export default class ManageAccount extends Vue {
       label: 'OFFICE',
       field: 'office',
     },
-    
-    { name: 'action', align: 'center', label: 'Action', field: 'action' },
   ];
   rows = [
     
     {
       office: 'Accounting Office',
-      action: 'blabla',
+
     },
    {
       office: 'Human Resource',
-      action: 'blabla',
     },
     {
       office: 'Budget Office',
-      action: 'blabla',
     },
     
   
@@ -201,11 +182,8 @@ export default class ManageAccount extends Vue {
   cancelEnabled = true;
   addUser = false;
   editRow = false;
-  name = '';
-  username = '';
-  password = '';
-  email = '';
-  role = '';
+  name = false;
+ 
   filter = '';
   options = ['Admin', 'Employee'];
 

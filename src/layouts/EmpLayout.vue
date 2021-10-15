@@ -10,12 +10,15 @@
         <q-toolbar>
           <q-btn flat @click="drawer = !drawer" round dense icon="menu" />
           <q-toolbar-title>MSU Document Tracking</q-toolbar-title>
+          <div class="flex flex-right">
+          <q-btn outline style="color: white;" label="LOGOUT" to="Login"/>
+          </div>
         </q-toolbar>
       </q-header>
 
       <q-drawer v-model="drawer" show-if-above :width="250" :breakpoint="500">
-        <q-list padding class="menu-list">
-
+        <q-list padding style=" margin-top: 150px; border-right: 1px solid #ddd">
+            
           <q-item clickable v-ripple to="Documents">
             <q-item-section avatar>
               <q-icon name="inbox" />
@@ -40,12 +43,12 @@
             <q-item-section> RECEIVED </q-item-section>
           </q-item>
 
-          <q-item clickable v-ripple to="Incoming">
+          <q-item clickable v-ripple to="Outcoming">
             <q-item-section avatar>
               <q-icon name="drafts" />
             </q-item-section>
 
-            <q-item-section> INCOMING </q-item-section>
+            <q-item-section> OUTGOING </q-item-section>
           </q-item>
 
           <q-item clickable v-ripple to="Returned">
@@ -58,21 +61,22 @@
 
           <q-item clickable v-ripple to="TrackDocs">
             <q-item-section avatar>
-              <q-icon name="Logout" />
+              <q-icon name="shopping_cart" />
             </q-item-section>
 
             <q-item-section> TRACK DOCUMENTS </q-item-section>
           </q-item>
 
-          <q-item clickable v-ripple to="LandingPage">
-            <q-item-section avatar>
-              <q-icon name="logout" />
-            </q-item-section>
-
-            <q-item-section> LOGOUT </q-item-section>
-          </q-item>
-
         </q-list>
+        <q-img class="absolute-top" src="../assets/unnamed.png" style="height: 150px; width: 250px">
+          <div class="absolute-bottom bg-transparent">
+            <q-avatar size="56px" class="q-mb-sm">
+              <img src="../assets/images7.png">
+            </q-avatar>
+            <div class="text-weight-bold">Employee Account</div>
+            <div>@emp.1234</div>
+          </div>
+        </q-img>
       </q-drawer>
 
       <q-page-container>
@@ -92,7 +96,13 @@ export default {
   },
 };
 </script>
-<style lang="sass" scoped>
-.menu-list .q-item
-  border-radius: 0 32px 32px 0
+<style>
+.bg-image
+{
+  background-image: url(../assets/image15.jpg);
+  background-blend-mode: overlay;
+  background-position: center;
+  background-size: 100%;
+}
+
 </style>

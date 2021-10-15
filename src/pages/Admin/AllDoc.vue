@@ -83,7 +83,7 @@
                     </q-list>
                   </q-btn-dropdown>
 
-                   <div class="q-pa-md" style="max-width: 300px">
+                  <div class="q-pa-md" style="max-width: 300px">
                     <q-input
                       label="Purpose"
                       v-model="text"
@@ -111,30 +111,40 @@
         </template>
 
         <template v-slot:body="props">
+          
           <q-tr :props="props">
             <div>
               <q-td>
-                   <q-btn
-                  color="blue-10"
-                  icon="navigation"
-                  size="sm"
-                  class="q-ml-sm"
-                  flat
-                  round
-                  dense
-                  @click="dialog = true"
-                />
-                <q-btn
-                  color="orange-10"
+
+               <q-btn
+                  color="green"
                   icon="shopping_cart"
                   size="sm"
                   class="q-ml-sm"
                   flat
                   round
                   dense
-                  @click="dialog = true"
+                  @click="editRow = true"
                 />
-             
+                <q-dialog v-model="editRow">
+                  <q-card style="width: 350px">
+                    <q-card-section class="row">
+                      <div class="text-h6">CODE</div>
+                      <q-space />
+                      <q-btn flat round dense icon="close" v-close-popup />
+                    </q-card-section>
+
+                    <q-card-section class="q-gutter-md">
+                      <q-input filled v-model="text" :dense="dense" />
+                    </q-card-section>
+
+                    <q-card-actions align="center">
+                      <q-btn flat label="Close" color="red-10" v-close-popup />
+                      <q-btn flat label="Print" color="primary" v-close-popup />
+                    </q-card-actions>
+                  </q-card>
+                </q-dialog>
+
                 <q-btn
                   color="red-10"
                   icon="delete"
@@ -145,7 +155,7 @@
                   dense
                   @click="dialog = true"
                 />
-                
+
                 <q-dialog v-model="dialog" persistent>
                   <q-card style="width: 300px">
                     <q-card-section class="row items-center">
@@ -172,10 +182,8 @@
                         v-close-popup
                       />
                     </q-card-actions>
-                    
                   </q-card>
                 </q-dialog>
-
               </q-td>
             </div>
 
@@ -217,7 +225,6 @@ export default class ManageAccount extends Vue {
       label: 'DATE / TIME',
       field: 'datetime',
     },
-
   ];
   rows = [
     {
@@ -225,20 +232,19 @@ export default class ManageAccount extends Vue {
       document: 'Testing',
       type: 'leave',
       datetime: 'September 02, 2021 / 2pm',
-     
     },
     {
       code: '02131031001',
       document: 'dunno',
       type: 'communication letter',
       datetime: 'September 02, 2021 / 2pm',
-     
     },
   ];
   dialog = false;
   cancelEnabled = true;
   addUser = false;
   editRow = false;
+  text = false;
   name = '';
   username = '';
   password = '';

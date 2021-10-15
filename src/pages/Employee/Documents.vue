@@ -114,26 +114,62 @@
           <q-tr :props="props">
             <div>
               <q-td>
-                   <q-btn
-                  color="blue-10"
+                  <q-btn
+                  color="green"
                   icon="navigation"
                   size="sm"
                   class="q-ml-sm"
                   flat
                   round
                   dense
-                  @click="dialog = true"
+                  @click="prev= true"
                 />
+                <q-dialog v-model="prev">
+                  <q-card style="width: 350px">
+                    <q-card-section class="row">
+                      <div class="text-h6">PREVIEW DETAILS</div>
+                      <q-space />
+                      <q-btn flat round dense icon="close" v-close-popup />
+                    </q-card-section>
+
+                    <q-card-section class="q-gutter-md">
+                      <q-input filled v-model="text" :dense="dense" label="table dapat aya ka history na "/>
+                    </q-card-section>
+
+                    <q-card-actions align="right">
+                      <q-btn flat label="Close" color="red-10" v-close-popup />
+                    </q-card-actions>
+                  </q-card>
+                </q-dialog>
+                
                 <q-btn
-                  color="orange-10"
+                  color="green"
                   icon="shopping_cart"
                   size="sm"
                   class="q-ml-sm"
                   flat
                   round
                   dense
-                  @click="dialog = true"
+                  @click="editRow = true"
                 />
+                <q-dialog v-model="editRow">
+                  <q-card style="width: 350px">
+                    <q-card-section class="row">
+                      <div class="text-h6">CODE</div>
+                      <q-space />
+                      <q-btn flat round dense icon="close" v-close-popup />
+                    </q-card-section>
+
+                    <q-card-section class="q-gutter-md">
+                      <q-input filled v-model="text" :dense="dense" />
+                    </q-card-section>
+
+                    <q-card-actions align="center">
+                      <q-btn flat label="Close" color="red-10" v-close-popup />
+                      <q-btn flat label="Print" color="primary" v-close-popup />
+                    </q-card-actions>
+                  </q-card>
+                </q-dialog>
              
                 <q-btn
                   color="red-10"
@@ -240,8 +276,11 @@ export default class ManageAccount extends Vue {
   addUser = false;
   editRow = false;
   name = '';
+  text = '';
+  dense = '';
   username = '';
   password = '';
+  prev = '';
   email = '';
   role = '';
   filter = '';

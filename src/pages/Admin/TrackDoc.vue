@@ -1,5 +1,5 @@
 <template>
-  <q-page class="bg-blue-3">
+  <q-page class="bg-image">
     <div class="q-pa-md">
       <div class="text-h4 text-bold">
         <q-icon
