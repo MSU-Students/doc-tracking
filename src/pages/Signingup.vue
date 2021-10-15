@@ -14,17 +14,12 @@
           <div>
             <h4 class="flex flex-center text-blue text-bold">Create Account</h4>
           </div>
-          <q-input class="bg-blue-3" filled v-model="Fname" label="FULL NAME" />
-          <q-input class="bg-blue-3" filled v-model="em" label="EMAIL" suffix="@gmail.com"/>
-
-          <q-select
-            class="bg-blue-3"
-            color="black"
-            filled
-            v-model="model"
-            :options="options"
-            label="STATUS"
-          />
+          <q-input class="bg-blue-3" filled v-model="Fname" label="FIRST NAME" />
+          <q-input class="bg-blue-3" filled v-model="em" label="MIDDLE NAME"/>
+          <q-input class="bg-blue-3" filled v-model="em" label="LAST NAME"/>
+          <q-input class="bg-blue-3" filled v-model="em" label="OFFICE"/>
+           <q-input class="bg-blue-3" filled v-model="em" label="STATUS"/>
+         
 
           <q-input
             class="bg-blue-3"
@@ -42,32 +37,40 @@
             </template>
           </q-input>
 
-          <q-input
-            class="bg-blue-3"
-            v-model="password"
-            filled
-            :type="isPwd ? 'password' : 'pass'"
-            label="CONFIRM PASSWORD"
-          >
-            <template v-slot:append>
-              <q-icon
-                :name="isPwd ? 'visibility_off' : 'visibility'"
-                class="cursor-pointer"
-                @click="isPwd = !isPwd"
-              />
-            </template>
-          </q-input>
         </div>
-        <div class="q-pa-xl q-gutter-md flex flex-center">
-          <q-btn
-            outline
-            rounded
-            color="primary"
-            label="Register"
-            to="Login"
-            style="width: 300px"
+        <div class="q-pa-md q-gutter-sm flex flex-center" >
+     <q-btn color="red" label="Back" icon="close" to="Login"/>     
+    <q-btn label="Register" color="primary" @click="prompt = true" />
+
+
+    <q-dialog v-model="prompt" persistent>
+      <q-card style="min-width: 350px">
+        <q-card-section>
+          <div class="text-h6">Create Your Account</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-md q-gutter-md">
+          <q-input filled v-model="Uname" label="USERNAME" />
+
+      <q-input v-model= "password" filled :type="isPwd ? 'password' : 'text'" label="PASSWORD">
+        <template v-slot:append>
+          <q-icon
+            :name="isPwd ? 'visibility_off' : 'visibility'"
+            class="cursor-pointer"
+            @click="isPwd = !isPwd"
           />
-        </div>
+        </template>
+        </q-input>
+        </q-card-section>
+
+        <q-card-actions align="right" class="text-primary">
+          <q-btn outline color="red" flat label="Close" icon="close" v-close-popup />
+          <q-btn outline color="green" flat label="Save" icon="add" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+  </div>
+       
       </q-card>
     </div>
   </q-page>
@@ -80,14 +83,15 @@ export default {
   data() {
     return {
       Fname: '',
-      em: '',
-      uname: '',
-      pass: '',
+      Mname: '',
+      Lname: '',
+      Office: '',
+      status: '',
       password: '',
       isPwd: ref(true),
+      prompt: ref(false),
       model: ref(null),
 
-      options: ['Employee', 'Client'],
     };
   },
 };
