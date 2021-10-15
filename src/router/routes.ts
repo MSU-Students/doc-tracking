@@ -36,6 +36,14 @@ const routes: RouteRecordRaw[] = [
       { path: 'TrackDocs', component: () => import('pages/Employee/TrackDocs.vue') },
     ],
   },
+
+  {
+    path: '',
+    component: () => import('layouts/AdminLayout.vue'),
+    children: [
+     
+    ],
+  },
   
 
 
