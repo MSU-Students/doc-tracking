@@ -220,6 +220,8 @@ export default class ManageAccount extends Vue {
   addUser = false;
   editRow = false;
   name = '';
+  text = '';
+  dense = '';
   fname = '';
   username = '';
   password = '';

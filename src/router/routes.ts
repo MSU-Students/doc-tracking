@@ -20,32 +20,48 @@ const routes: RouteRecordRaw[] = [
       { path: 'TrackDoc', component: () => import('pages/Admin/TrackDoc.vue') },
       { path: 'DocType', component: () => import('pages/Admin/DocType.vue') },
       { path: 'Office', component: () => import('pages/Admin/Office.vue') },
-      { path: 'ManageAccount', component: () => import('pages/Admin/ManageAccount.vue') },
-      
+      {
+        path: 'ManageAccount',
+        component: () => import('pages/Admin/ManageAccount.vue'),
+      },
     ],
   },
   {
     path: '',
     component: () => import('layouts/EmpLayout.vue'),
     children: [
-      { path: 'Documents', component: () => import('pages/Employee/Documents.vue') },
-      { path: 'Incoming', component: () => import('pages/Employee/Incoming.vue') },
-      { path: 'Received', component: () => import('pages/Employee/Received.vue') },
-      { path: 'Outcoming', component: () => import('pages/Employee/Outcoming.vue') },
-      { path: 'Returned', component: () => import('pages/Employee/Returned.vue') },
-      { path: 'TrackDocs', component: () => import('pages/Employee/TrackDocs.vue') },
+      {
+        path: 'Documents',
+        component: () => import('pages/Employee/Documents.vue'),
+      },
+      {
+        path: 'Incoming',
+        component: () => import('pages/Employee/Incoming.vue'),
+      },
+      {
+        path: 'Received',
+        component: () => import('pages/Employee/Received.vue'),
+      },
+      {
+        path: 'Outcoming',
+        component: () => import('pages/Employee/Outcoming.vue'),
+      },
+      {
+        path: 'Returned',
+        component: () => import('pages/Employee/Returned.vue'),
+      },
+      {
+        path: 'TrackDocs',
+        component: () => import('pages/Employee/TrackDocs.vue'),
+      },
     ],
   },
 
   {
     path: '',
     component: () => import('layouts/AdminLayout.vue'),
-    children: [
-     
-    ],
+    children: [],
   },
-  
-
 
   // Always leave this as last one,
   // but you can also remove it
