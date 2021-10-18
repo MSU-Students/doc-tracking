@@ -52,7 +52,6 @@
 
                 <q-card-section class="q-gutter-md">
                   <q-input outlined v-model="name" label="TITLE" />
-                  
                 </q-card-section>
 
                 <q-card-actions align="right">
@@ -95,7 +94,6 @@
 
                     <q-card-section class="q-gutter-md">
                       <q-input outlined v-model="name" label="TITLE" />
-                      
                     </q-card-section>
 
                     <q-card-actions align="right">
@@ -172,15 +170,12 @@ export default class ManageAccount extends Vue {
   rows = [
     {
       category: 'Contract of Service',
-     
     },
     {
       category: 'Leave',
-      
     },
     {
       category: 'Communication Letter',
-      
     },
   ];
   dialog = false;

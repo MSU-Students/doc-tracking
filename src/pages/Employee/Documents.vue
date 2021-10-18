@@ -83,7 +83,7 @@
                     </q-list>
                   </q-btn-dropdown>
 
-                   <div class="q-pa-md" style="max-width: 300px">
+                  <div class="q-pa-md" style="max-width: 300px">
                     <q-input
                       label="Purpose"
                       v-model="text"
@@ -114,7 +114,7 @@
           <q-tr :props="props">
             <div>
               <q-td>
-                  <q-btn
+                <q-btn
                   color="green"
                   icon="navigation"
                   size="sm"
@@ -122,7 +122,7 @@
                   flat
                   round
                   dense
-                  @click="prev= true"
+                  @click="prev = true"
                 />
                 <q-dialog v-model="prev">
                   <q-card style="width: 350px">
@@ -133,7 +133,12 @@
                     </q-card-section>
 
                     <q-card-section class="q-gutter-md">
-                      <q-input filled v-model="text" :dense="dense" label="table dapat aya ka history na "/>
+                      <q-input
+                        filled
+                        v-model="text"
+                        :dense="dense"
+                        label="table dapat aya ka history na "
+                      />
                     </q-card-section>
 
                     <q-card-actions align="right">
@@ -141,7 +146,7 @@
                     </q-card-actions>
                   </q-card>
                 </q-dialog>
-                
+
                 <q-btn
                   color="green"
                   icon="shopping_cart"
@@ -170,7 +175,7 @@
                     </q-card-actions>
                   </q-card>
                 </q-dialog>
-             
+
                 <q-btn
                   color="red-10"
                   icon="delete"
@@ -181,7 +186,7 @@
                   dense
                   @click="dialog = true"
                 />
-                
+
                 <q-dialog v-model="dialog" persistent>
                   <q-card style="width: 300px">
                     <q-card-section class="row items-center">
@@ -208,10 +213,8 @@
                         v-close-popup
                       />
                     </q-card-actions>
-                    
                   </q-card>
                 </q-dialog>
-
               </q-td>
             </div>
 
@@ -253,7 +256,6 @@ export default class ManageAccount extends Vue {
       label: 'DATE / TIME',
       field: 'datetime',
     },
-
   ];
   rows = [
     {
@@ -261,14 +263,12 @@ export default class ManageAccount extends Vue {
       document: 'Testing',
       type: 'leave',
       datetime: 'September 02, 2021 / 2pm',
-     
     },
     {
       code: '02131031001',
       document: 'dunno',
       type: 'communication letter',
       datetime: 'September 02, 2021 / 2pm',
-     
     },
   ];
   dialog = false;
