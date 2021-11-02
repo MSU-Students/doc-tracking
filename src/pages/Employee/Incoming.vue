@@ -3,8 +3,8 @@
     <div class="q-pa-md">
       <div class="text-h4 text-bold">
         <q-icon
-          name="account_circle"
-          color="light-blue-6"
+          name="local_shipping"
+          color="deep-orange"
           style="font-size: 4rem"
         />
         Incoming Documents
@@ -38,12 +38,13 @@
               label="Create Documents"
               color="primary"
               dense
+              size="13px"
               flat
               icon="add"
               @click="addUser = true"
             />
-            <q-dialog v-model="addUser">
-              <q-card style="width: 350px">
+            <q-dialog v-model="addUser" persistent>
+              <q-card style="width: 900px">
                 <q-card-section class="row">
                   <div class="text-h6">Add Documents</div>
                   <q-space />
@@ -51,45 +52,55 @@
                 </q-card-section>
 
                 <q-card-section class="q-gutter-md">
-                  <q-input outlined v-model="name" label="Title" />
-                  <div class="q-pa-md" style="max-width: 300px">
-                    <q-input
-                      label="Description"
-                      v-model="text"
-                      filled
-                      type="textarea"
-                    />
-                  </div>
+                  <div class="row">
+                    <div class="col col-md-8">
+                      <q-input
+                        class="q-py-md"
+                        outlined
+                        v-model="code"
+                        label="CODE"
+                      />
+                      <q-input
+                        class="q-py-md"
+                        outlined
+                        v-model="document"
+                        label="DOCUMENT"
+                      />
+                      <q-input
+                        class="q-py-md"
+                        outlined
+                        v-model="type"
+                        label="TYPE"
+                      />
+                    </div>
+                    <div class="col-md-4 q-pl-md">
+                      <q-input
+                        class="q-py-md"
+                        outlined
+                        v-model="date"
+                        label="DATE"
+                      />
+                      <q-input
+                        class="q-py-md"
+                        outlined
+                        v-model="time"
+                        label="TIME"
+                      />
 
-                  <q-btn-dropdown label="Type" style="width: 300px">
-                    <q-list>
-                      <q-item clickable v-close-popup @click="onItemClick">
-                        <q-item-section>
-                          <q-item-label>Communication Letter</q-item-label>
-                        </q-item-section>
-                      </q-item>
-
-                      <q-item clickable v-close-popup @click="onItemClick">
-                        <q-item-section>
-                          <q-item-label>Contract of Service</q-item-label>
-                        </q-item-section>
-                      </q-item>
-
-                      <q-item clickable v-close-popup @click="onItemClick">
-                        <q-item-section>
-                          <q-item-label>Leave</q-item-label>
-                        </q-item-section>
-                      </q-item>
-                    </q-list>
-                  </q-btn-dropdown>
-
-                   <div class="q-pa-md" style="max-width: 300px">
-                    <q-input
-                      label="Purpose"
-                      v-model="text"
-                      filled
-                      type="textarea"
-                    />
+                      <div class="q-py-md">
+                        <q-file
+                          v-model="files"
+                          label="Upload File"
+                          filled
+                          multiple
+                          style="max-width: 300px"
+                        >
+                          <template v-slot:prepend>
+                            <q-icon name="photo_camera" />
+                          </template>
+                        </q-file>
+                      </div>
+                    </div>
                   </div>
                 </q-card-section>
 
@@ -101,142 +112,220 @@
             </q-dialog>
           </div>
         </template>
-        <template v-slot:header="props">
-          <q-tr :props="props">
-            <q-th auto-width />
-            <q-th v-for="col in props.cols" :key="col.name" :props="props">
-              {{ col.label }}
-            </q-th>
-          </q-tr>
-        </template>
 
-        <template v-slot:body="props">
-          <q-tr :props="props">
-            <div>
-              <q-td>
-                    <q-btn
-                  color="green"
-                  icon="navigation"
-                  size="sm"
-                  class="q-ml-sm"
-                  flat
-                  round
-                  dense
-                  @click="dialog = true"
-                />
-                <q-dialog v-model="dialog">
-                  <q-card style="width: 350px">
-                    <q-card-section class="row">
-                      <div class="text-h6">PREVIEW DETAILS</div>
-                      <q-space />
-                      <q-btn flat round dense icon="close" v-close-popup />
-                    </q-card-section>
+        <template v-slot:body-cell-Actions="props">
+          <q-td :props="props">
+            <div class="q-gutter-sm">
+              <q-btn
+                round
+                color="blue"
+                icon="more_vert"
+                size="md"
+                flat
+                dense
+                @click="Details = true"
+              />
+              <q-dialog v-model="Details">
+                <q-card style="width: 800px; max-width: 100vw" flat bordered>
+                  <q-card-section>
+                    <div class="text-h6 text-center">
+                      PREVIEW DETAILS
+                      <q-btn
+                        round
+                        flat
+                        dense
+                        icon="close"
+                        class="float-right"
+                        color="grey-8"
+                        v-close-popup
+                      ></q-btn>
+                    </div>
+                  </q-card-section>
+                  <q-separator />
+                  <q-card-section>
+                    <div>TITLE:</div>
+                    <div>DESCRIPTION:</div>
+                  </q-card-section>
+                  <q-card-section>
+                    <q-table
+                      title="Document Details"
+                      :rows="Peekrows"
+                      :columns="Peekcolumns"
+                      row-key="peek"
+                      :rows-per-page-options="[0]"
+                      :filter="filter"
+                    >
+                    </q-table>
+                  </q-card-section>
+                </q-card>
+              </q-dialog>
 
-                    <q-card-section class="q-gutter-md">
-                      <q-input filled v-model="text" :dense="dense" />
-                    </q-card-section>
+              <q-btn
+                round
+                color="blue"
+                icon="settings"
+                size="sm"
+                flat
+                dense
+                @click="editRow = true"
+              />
+              <q-dialog v-model="editRow" persistent>
+                <q-card style="width: 900px">
+                  <q-card-section class="row">
+                    <div class="text-h6">Receive Document?</div>
+                    <q-separator />
+                    <q-btn flat round dense icon="close" v-close-popup />
+                  </q-card-section>
 
-                    <q-card-actions align="center">
-                      <q-btn flat label="Close" color="red-10" v-close-popup />
-                      <q-btn flat label="Print" color="primary" v-close-popup />
-                    </q-card-actions>
-                  </q-card>
-                </q-dialog>
-                <q-btn
-                  color="green"
-                  icon="shopping_cart"
-                  size="sm"
-                  class="q-ml-sm"
-                  flat
-                  round
-                  dense
-                  @click="editRow = true"
-                />
-                <q-dialog v-model="editRow">
-                  <q-card style="width: 350px">
-                    <q-card-section class="row">
-                      <div class="text-h6">CODE</div>
-                      <q-space />
-                      <q-btn flat round dense icon="close" v-close-popup />
-                    </q-card-section>
+                  <q-card-section class="q-gutter-lg">
+                    <div class="center">
+                      <div>
+                        Please click Confirm if you want to RECEIVE document?
+                      </div>
+                    </div>
+                  </q-card-section>
+                  <q-card-actions align="center">
+                    <q-btn flat label="Cancel" color="red-10" v-close-popup />
+                    <q-btn flat label="Confirm" color="primary" v-close-popup />
+                  </q-card-actions>
+                </q-card>
+              </q-dialog>
+              <q-btn
+                round
+                color="red"
+                icon="print"
+                size="sm"
+                flat
+                dense
+                @click="dialog = true"
+              />
+              <q-dialog v-model="dialog" persistent>
+                <q-card style="width: 900px">
+                  <q-card-section class="row">
+                    <div class="text-h4 text-bold">CODE</div>
+                    <q-space />
+                    <q-btn flat round dense icon="close" v-close-popup />
+                  </q-card-section>
 
-                    <q-card-section class="q-gutter-md">
-                      <q-input filled v-model="text" :dense="dense" />
-                    </q-card-section>
-
-                    <q-card-actions align="center">
-                      <q-btn flat label="Close" color="red-10" v-close-popup />
-                      <q-btn flat label="Print" color="primary" v-close-popup />
-                    </q-card-actions>
-                  </q-card>
-                </q-dialog>
-             
-                
-
-              </q-td>
+                  <q-card-section class="q-gutter-md">
+                    <div class="center-7">
+                      <q-input outlined dense />
+                    </div>
+                  </q-card-section>
+                  <q-card-actions align="right">
+                    <q-btn flat label="Cancel" color="red-10" v-close-popup />
+                    <q-btn flat label="Save" color="primary" v-close-popup />
+                  </q-card-actions>
+                </q-card>
+              </q-dialog>
             </div>
-
-            <q-td v-for="col in props.cols" :key="col.name" :props="props">
-              {{ col.value }}
-            </q-td>
-          </q-tr>
+          </q-td>
         </template>
       </q-table>
     </div>
   </q-page>
 </template>
+
 <script lang="ts">
 import { Vue, Options } from 'vue-class-component';
 interface IRow {
-  name: string;
+  code: string;
 }
+
+interface peekrow {
+  peek: string;
+}
+
 @Options({})
 export default class ManageAccount extends Vue {
   columns = [
-    
+    {
+      name: 'code',
+      required: true,
+      label: 'CODE',
+      align: 'left',
+      field: (row: IRow) => row.code,
+      format: (val: string) => `${val}`,
+    },
     {
       name: 'document',
       align: 'center',
-      label: 'DOCUMENT',
+      label: 'DOCUMENTS',
       field: 'document',
     },
-    { name: 'type', align: 'center', label: 'Type', field: 'type' },
     {
-      name: 'datetime',
+      name: 'type',
       align: 'center',
-      label: 'DATE / TIME',
-      field: 'datetime',
+      label: 'TYPE',
+      field: 'type',
     },
-
+    {
+      name: 'office',
+      align: 'center',
+      label: 'OFFICE',
+      field: 'office',
+    },
+    {
+      name: 'sender',
+      align: 'center',
+      label: 'SENDER',
+      field: 'sender',
+    },
+    {
+      name: 'date',
+      align: 'center',
+      label: 'DATE',
+      field: 'date',
+    },
+    { name: 'time', align: 'center', label: 'TIME', field: 'time' },
+    { name: 'Actions', align: 'center', label: 'Actions', field: 'Actions' },
   ];
   rows = [
     {
-      code: '10110010001',
+      code: '20186327',
       document: 'Testing',
-      type: 'leave',
-      datetime: 'September 02, 2021 / 2pm',
-     
+      type: 'Communication Letter',
+      office: 'Accounting',
+      sender: 'Shidar',
+      date: '10/2/2021',
+      time: '2pm',
+    },
+  ];
+  Peekcolumns = [
+    {
+      name: 'peek',
+      required: true,
+      label: 'OFFICE',
+      align: 'left',
+      field: (row: peekrow) => row.peek,
+      format: (val: string) => `${val}`,
     },
     {
-      code: '02131031001',
-      document: 'dunno',
-      type: 'communication letter',
-      datetime: 'September 02, 2021 / 2pm',
-     
+      name: 'peektype',
+      align: 'center',
+      label: 'TYPE',
+      field: 'peektype',
+    },
+  ];
+  Peekrows = [
+    {
+      peek: 'Accounting',
+      peektype: 'Leave',
     },
   ];
   dialog = false;
   cancelEnabled = true;
   addUser = false;
   editRow = false;
-  name = '';
+  Details = false;
+  code = '';
+  document = '';
+  type = '';
+  date = '';
+  time = '';
   text = '';
-  username = '';
-  password = '';
-  email = '';
-
+  files = '';
   filter = '';
-  options = ['Admin', 'Employee'];
 
   onItemClick() {
     console.log('Clicked!');
