@@ -3,24 +3,36 @@
     <div class="q-pa-md">
       <div class="text-h4 text-bold">
         <q-icon
-          name="account_circle"
-          color="light-blue-6"
+          name="local_shipping"
+          color="deep-orange"
           style="font-size: 4rem"
         />
         Track Documents
       </div>
+
+      <br />
       <q-card class="q-gutter-y-md column flex flex-center">
-        <div  style="width: 900px" >
+        <div style="width: 900px">
+          <q-input
+            filled
+            bottom-slots
+            v-model="text"
+            placeholder="Enter the barcode here"
+          >
+            <template v-slot:after>
+              <q-btn
+                square
+                dense
+                flat
+                icon="search"
+                label="Track"
+                color="blue"
+              />
+            </template>
+          </q-input>
+        </div>
+      </q-card>
 
-      <q-input filled bottom-slots v-model="text" label="Enter the barcode here">
-
-        <template v-slot:after>
-          <q-btn square dense flat icon="search"  label="Track" color="blue"/>
-        </template>
-      </q-input>
-
-    </div>
-    </q-card>
       <br />
 
       <q-table
@@ -31,87 +43,73 @@
         :rows-per-page-options="[0]"
         :filter="filter"
       >
-        <template v-slot:top-right>
-        
-        </template>
-        <template v-slot:header="props">
-          <q-tr :props="props">
-            <q-th auto-width />
-            <q-th v-for="col in props.cols" :key="col.name" :props="props">
-              {{ col.label }}
-            </q-th>
-          </q-tr>
-        </template>
       </q-table>
     </div>
   </q-page>
 </template>
+
 <script lang="ts">
 import { Vue, Options } from 'vue-class-component';
 interface IRow {
-  name: string;
+  datereceived: string;
 }
+
 @Options({})
 export default class ManageAccount extends Vue {
   columns = [
-   
     {
-      name: 'DateReceived',
-      align: 'center',
-      label: 'Date Received',
-      field: 'document',
+      name: 'datereceived',
+      required: true,
+      label: 'DATE RECEIVED',
+      align: 'left',
+      field: (row: IRow) => row.datereceived,
+      format: (val: string) => `${val}`,
     },
     {
-      name: 'Off',
+      name: 'off',
       align: 'center',
       label: 'Office',
-      field: 'document',
+      field: 'off',
     },
-     {
-      name: 'DateReleased',
+    {
+      name: 'datereleased',
       align: 'center',
       label: 'Date Released',
-      field: 'document',
+      field: 'datereleased',
     },
     {
-      name: 'OffReleased',
+      name: 'offreleased',
       align: 'center',
       label: 'Office',
-      field: 'document',
+      field: 'offreleased',
     },
 
-    { name: 'status', align: 'center', label: 'Status', field: 'type' },
+    { name: 'status', align: 'center', label: 'Status', field: 'status' },
     {
-      name: 'Remarks',
+      name: 'remarks',
       align: 'center',
       label: 'Remarks',
-      field: 'document',
+      field: 'remarks',
     },
     {
       name: 'duration',
       align: 'center',
       label: 'Duration',
-      field: 'datetime',
+      field: 'duration',
     },
-
   ];
   rows = [
-    
+    {
+      datereceived: 'Oct 2, 2021',
+      off: 'Accounting',
+      datereleased: 'Oct 2, 2021',
+      offreleased: 'HRDO',
+      status: 'Released',
+      remarks: 'Testing',
+      duration: '0 Days 0 hrs 1 min',
+    },
   ];
-  dialog = false;
-  cancelEnabled = true;
-  addUser = false;
-  editRow = false;
-  name = '';
-  username = '';
-  password = '';
-  email = '';
-  role = '';
+  text = '';
   filter = '';
-  options = ['Admin', 'Employee'];
-
-  onItemClick() {
-    console.log('Clicked!');
-  }
 }
 </script>
