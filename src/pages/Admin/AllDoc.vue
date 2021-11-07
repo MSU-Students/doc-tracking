@@ -264,6 +264,42 @@
                   </q-card-actions>
                 </q-card>
               </q-dialog>
+
+              <q-btn
+              color="red-10"
+              icon="delete"
+              size="sm"
+              class="q-ml-sm"
+              flat
+              round
+              dense
+              @click="del = true"
+            />
+            <q-dialog v-model="del" persistent>
+              <q-card style="width: 300px">
+                <q-card-section class="row items-center">
+                  <q-avatar
+                    size="sm"
+                    icon="warning"
+                    color="red-10"
+                    text-color="white"
+                  />
+                  <span class="q-ml-sm">Confirm Delete?</span>
+                </q-card-section>
+                <q-card-actions align="right">
+                  <q-btn
+                    flat
+                    label="Cancel"
+                    color="primary"
+                    v-close-popup="cancelEnabled"
+                    :disable="!cancelEnabled"
+                  />
+                  <q-btn flat label="Confirm" color="primary" v-close-popup />
+                </q-card-actions>
+              </q-card>
+            </q-dialog>
+
+
             </div>
           </q-td>
         </template>
@@ -371,6 +407,7 @@ export default class ManageAccount extends Vue {
   addUser = false;
   editRow = false;
   Details = false;
+  del = false;
   code = '';
   document = '';
   type = '';

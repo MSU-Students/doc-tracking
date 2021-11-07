@@ -1,74 +1,87 @@
 <template>
-  <q-header>
-    <q-toolbar class="bg-white">
-      <img src="~assets/image10.png" style="height: 70px; width: 70px" />
-
-      <div class="text-h3 text-bold text-broadway text-brown absolute-center">
-        MSU Document Tracking System
-      </div>
-    </q-toolbar>
-  </q-header>
-  <q-page class="bg-blue-3">
-    <q-card
-      class="absolute-right bg-blue-3"
-      style="height: 400px; width: 400px"
+  <q-page class="bg-blue-3 flex flex-center absolute-mid-center">
+    <div
+      class="
+        text-center text-h4 text-bold text-arial text-brown
+        absolute-mid-top
+      "
     >
-      <div class="q-pa-lg q-gutter-xs absolute-center">
-        <q-btn
-          color="grey-4"
-          text-color="purple"
-          outline
-          style="color: goldenrod"
-          label="Login with your Account"
-          to="Login"
-        />
-        <q-btn
-          color="grey-4"
-          text-color="purple"
-          outline
-          style="color: goldenrod"
-          label="Click here to sign up"
-          to="Signingup"
-        />
-      </div>
-    </q-card>
-    <div class="q-pa-lg q-gutter-lg absolute-left">
-      <q-carousel
-        style="height: 500px; width: 1000px"
-        animated
-        v-model="slide"
-        navigation
-        infinite
-        :autoplay="autoplay"
-        arrows
-        transition-prev="slide-right"
-        transition-next="slide-left"
-        @mouseenter="autoplay = false"
-        @mouseleave="autoplay = true"
-      >
-        <q-carousel-slide :name="1" img-src="../assets/images7.png" />
-        <q-carousel-slide :name="2" img-src="../assets/image13.jpg" />
-        <q-carousel-slide :name="3" img-src="../assets/image14.jpg" />
-        <q-carousel-slide :name="4" img-src="../assets/image19.png" />
-      </q-carousel>
+      Welcome to the MSU Document Tracking System
+    </div>
+    <div class="q-pa-lg" style="width: 600px">
+      <q-option-group
+        v-model="navPos"
+        :options="navigationPositions"
+        color="purple"
+        inline
+        class="q-mb-md"
+      />
 
-      <div
-        class="
-          text-center text-h4 text-bold text-arial text-brown
-          absolute-mid-top
-        "
+      <q-carousel
+        v-model="slide"
+        swipeable
+        animated
+        :navigation-position="navPos"
+        navigation
+        padding
+        height="300px"
+        class="bg-purple text-black rounded-borders flex-center"
       >
-        Welcome to the MSU Document Tracking System
+        <q-carousel-slide name="style" class="column no-wrap flex-center">
+          <q-icon name="style" size="56px" />
+          <div class="q-mt-md text-center">
+            {{ lorem }}
+          </div>
+        </q-carousel-slide>
+        <q-carousel-slide name="tv" class="column no-wrap flex-center">
+          <q-icon name="live_tv" size="56px" />
+          <div class="q-mt-md text-center">
+            {{ lorem }}
+          </div>
+        </q-carousel-slide>
+        <q-carousel-slide name="layers" class="column no-wrap flex-center">
+          <q-icon name="layers" size="56px" />
+          <div class="q-mt-md text-center">
+            {{ lorem }}
+          </div>
+        </q-carousel-slide>
+        <q-carousel-slide name="map" class="column no-wrap flex-center">
+          <q-icon name="terrain" size="56px" />
+          <div class="q-mt-md text-center">
+            {{ lorem }}
+          </div>
+        </q-carousel-slide>
+      </q-carousel>
+    </div>
+
+    <q-header>
+      <q-toolbar class="bg-white">
+        <img src="~assets/Logo_MSU60th.jpg" style="height: 70px; width: 70px" />
+
+        <div class="text-h3 text-bold text-broadway text-brown absolute-center">
+          MSU Document Tracking System
+        </div>
+      </q-toolbar>
+    </q-header>
+
+    <div
+      class="
+        text-center text-h3 text-bold text-arial text-brown
+        q-pt-lg
+        absolute-bottom
+      "
+    >
+      Welcome to the MSU Document Tracking System
+
+      <div class="text-center text-h6 text-arial text-brown q-pa-lg">
+        The Document Tracking System (DTS) of Mindanao State University Main
+        Campus (MSU-Main) is an information system capable of tracking the paper
+        trail of documents created within MSU offices. The DTS includes
+        information on the originating and receiving office and personnel, as
+        well as the time elapsed between departments.
       </div>
     </div>
   </q-page>
-  <div class="text-center text-h6 text-arial text-brown q-pa-lg">
-    The Document Tracking System (DTS) of Mindanao State University Main Campus
-    (MSU-Main) is an information system capable of tracking the paper trail of
-    documents created within MSU offices. The DTS includes information on the
-    originating and receiving office and personnel, as well as the time elapsed
-    between departments.
-  </div>
 </template>
 <script>
 import { ref } from 'vue';
@@ -76,8 +89,11 @@ import { ref } from 'vue';
 export default {
   setup() {
     return {
-      slide: ref(1),
-      autoplay: ref(true),
+      navPos: ref('bottom'),
+      navigationPositions: [],
+
+      slide: ref('style'),
+      lorem: 'bghdfghjkl',
     };
   },
 };

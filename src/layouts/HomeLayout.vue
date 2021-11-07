@@ -107,7 +107,7 @@ export default {
 <style>
 .bg-image
 {
-  background-image: url(../assets/image19.png);
+  background-image: url(../assets/image8.jpg);
   background-blend-mode: overlay;
   background-position: center;
   background-size: 100%;
