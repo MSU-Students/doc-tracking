@@ -1,15 +1,24 @@
 <template>
+   <q-header>
+      <q-toolbar class="bg-white">
+        <img src="~assets/image10.png" style="height: 70px; width: 70px" />
 
+        <div class="text-h3 text-bold text-broadway text-pink absolute-center">
+          MSU Document Tracking System
+        </div>
+      </q-toolbar>
+    </q-header>
   <q-layout>
     <q-page-container>
       <q-page class="flex bg-image flex-center">
-        <q-card
+        <q-card 
           v-bind:style="$q.screen.lt.sm ? { width: '90%' } : { width: '25%' }"
         >
           <q-card-section>
             <q-avatar size="125px" class="absolute-center shadow-10">
               <img src="../assets/images7.png" />
-            </q-avatar> </q-card-section
+            </q-avatar>
+             </q-card-section
           ><br />
           <q-card-section>
             <div class="text-center q-pt-lg">

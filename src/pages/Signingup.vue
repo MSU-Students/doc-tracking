@@ -15,27 +15,10 @@
             <h4 class="flex flex-center text-blue text-bold">Create Account</h4>
           </div>
           <q-input class="bg-blue-3" filled v-model="Fname" label="FIRST NAME" />
-          <q-input class="bg-blue-3" filled v-model="em" label="MIDDLE NAME"/>
-          <q-input class="bg-blue-3" filled v-model="em" label="LAST NAME"/>
-          <q-input class="bg-blue-3" filled v-model="em" label="OFFICE"/>
-           <q-input class="bg-blue-3" filled v-model="em" label="STATUS"/>
-         
-
-          <q-input
-            class="bg-blue-3"
-            v-model="pass"
-            filled
-            :type="isPwd ? 'password' : 'pass'"
-            label="PASSWORD"
-          >
-            <template v-slot:append>
-              <q-icon
-                :name="isPwd ? 'visibility_off' : 'visibility'"
-                class="cursor-pointer"
-                @click="isPwd = !isPwd"
-              />
-            </template>
-          </q-input>
+          <q-input class="bg-blue-3" filled v-model="Mname" label="MIDDLE NAME"/>
+          <q-input class="bg-blue-3" filled v-model="Lname" label="LAST NAME"/>
+          <q-input class="bg-blue-3" filled v-model="office" label="OFFICE"/>
+           <q-input class="bg-blue-3" filled v-model="status" label="STATUS"/>
 
         </div>
         <div class="q-pa-md q-gutter-sm flex flex-center" >
@@ -85,7 +68,8 @@ export default {
       Fname: '',
       Mname: '',
       Lname: '',
-      Office: '',
+      Uname: '',
+      office: '',
       status: '',
       password: '',
       isPwd: ref(true),
