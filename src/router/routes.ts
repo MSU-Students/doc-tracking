@@ -10,6 +10,8 @@ const routes: RouteRecordRaw[] = [
       { path: '/Signingup', component: () => import('pages/Signingup.vue') },
       { path: '/HomePage', component: () => import('pages/HomePage.vue') },
       { path: '/LandingPage', component: () => import('pages/LandingPage.vue') },
+      { path: '/AdminProfile', component: () => import('pages/AdminProfile.vue') },
+      { path: '/EmpProfile', component: () => import('pages/EmpProfile.vue') },
       { path: '/Index', component: () => import('pages/Index.vue') },
     ],
   },
@@ -31,34 +33,13 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     component: () => import('layouts/EmpLayout.vue'),
     children: [
-      {
-        path: '/Documents',
-        component: () => import('pages/Employee/Documents.vue'),
-      },
-      {
-        path: 'Incoming',
-        component: () => import('pages/Employee/Incoming.vue'),
-      },
-      {
-        path: '/Hold',
-        component: () => import('pages/Employee/Hold.vue'),
-      },
-      {
-        path: '/Received',
-        component: () => import('pages/Employee/Received.vue'),
-      },
-      {
-        path: '/Outgoing',
-        component: () => import('pages/Employee/Outgoing.vue'),
-      },
-      {
-        path: '/Returned',
-        component: () => import('pages/Employee/Returned.vue'),
-      },
-      {
-        path: '/TrackDocs',
-        component: () => import('pages/Employee/TrackDocs.vue'),
-      },
+      { path: '/Documents', component: () => import('pages/Employee/Documents.vue'),},
+      { path: 'Incoming', component: () => import('pages/Employee/Incoming.vue'),},
+      { path: '/Hold', component: () => import('pages/Employee/Hold.vue'), },
+      { path: '/Received', component: () => import('pages/Employee/Received.vue'),},
+      { path: '/Outgoing', component: () => import('pages/Employee/Outgoing.vue'), },
+      { path: '/Returned', component: () => import('pages/Employee/Returned.vue'), },
+      { path: '/TrackDocs', component: () => import('pages/Employee/TrackDocs.vue'),},
     ],
   },
 
