@@ -3,7 +3,7 @@
     <div class="q-pa-md">
       <div class="text-h4 text-bold">
         <q-icon
-          name="local_shipping"
+          name="move_to_inbox"
           color="deep-orange"
           style="font-size: 4rem"
         />
@@ -34,82 +34,6 @@
                 <q-icon name="search" />
               </template>
             </q-input>
-            <q-btn
-              label="Create Documents"
-              color="primary"
-              dense
-              size="13px"
-              flat
-              icon="add"
-              @click="addUser = true"
-            />
-            <q-dialog v-model="addUser" persistent>
-              <q-card style="width: 900px">
-                <q-card-section class="row">
-                  <div class="text-h6">Add Documents</div>
-                  <q-space />
-                  <q-btn flat round dense icon="close" v-close-popup />
-                </q-card-section>
-
-                <q-card-section class="q-gutter-md">
-                  <div class="row">
-                    <div class="col col-md-8">
-                      <q-input
-                        class="q-py-md"
-                        outlined
-                        v-model="code"
-                        label="CODE"
-                      />
-                      <q-input
-                        class="q-py-md"
-                        outlined
-                        v-model="document"
-                        label="DOCUMENT"
-                      />
-                      <q-input
-                        class="q-py-md"
-                        outlined
-                        v-model="type"
-                        label="TYPE"
-                      />
-                    </div>
-                    <div class="col-md-4 q-pl-md">
-                      <q-input
-                        class="q-py-md"
-                        outlined
-                        v-model="date"
-                        label="DATE"
-                      />
-                      <q-input
-                        class="q-py-md"
-                        outlined
-                        v-model="time"
-                        label="TIME"
-                      />
-
-                      <div class="q-py-md">
-                        <q-file
-                          v-model="files"
-                          label="Upload File"
-                          filled
-                          multiple
-                          style="max-width: 300px"
-                        >
-                          <template v-slot:prepend>
-                            <q-icon name="photo_camera" />
-                          </template>
-                        </q-file>
-                      </div>
-                    </div>
-                  </div>
-                </q-card-section>
-
-                <q-card-actions align="right">
-                  <q-btn flat label="Cancel" color="red-10" v-close-popup />
-                  <q-btn flat label="Add" color="primary" v-close-popup />
-                </q-card-actions>
-              </q-card>
-            </q-dialog>
           </div>
         </template>
 
@@ -118,52 +42,8 @@
             <div class="q-gutter-sm">
               <q-btn
                 round
-                color="blue"
-                icon="more_vert"
-                size="md"
-                flat
-                dense
-                @click="Details = true"
-              />
-              <q-dialog v-model="Details">
-                <q-card style="width: 800px; max-width: 100vw" flat bordered>
-                  <q-card-section>
-                    <div class="text-h6 text-center">
-                      PREVIEW DETAILS
-                      <q-btn
-                        round
-                        flat
-                        dense
-                        icon="close"
-                        class="float-right"
-                        color="grey-8"
-                        v-close-popup
-                      ></q-btn>
-                    </div>
-                  </q-card-section>
-                  <q-separator />
-                  <q-card-section>
-                    <div>TITLE:</div>
-                    <div>DESCRIPTION:</div>
-                  </q-card-section>
-                  <q-card-section>
-                    <q-table
-                      title="Document Details"
-                      :rows="Peekrows"
-                      :columns="Peekcolumns"
-                      row-key="peek"
-                      :rows-per-page-options="[0]"
-                      :filter="filter"
-                    >
-                    </q-table>
-                  </q-card-section>
-                </q-card>
-              </q-dialog>
-
-              <q-btn
-                round
-                color="blue"
-                icon="settings"
+                color="green"
+                icon="mark_as_unread"
                 size="sm"
                 flat
                 dense
@@ -172,16 +52,14 @@
               <q-dialog v-model="editRow" persistent>
                 <q-card style="width: 900px">
                   <q-card-section class="row">
-                    <div class="text-h6">Receive Document?</div>
-                    <q-separator />
+                    <div class="text-h6 text-bold">Receive Document?</div>
+                    <q-space />
                     <q-btn flat round dense icon="close" v-close-popup />
                   </q-card-section>
 
-                  <q-card-section class="q-gutter-lg">
-                    <div class="center">
-                      <div>
-                        Please click Confirm if you want to RECEIVE document?
-                      </div>
+                  <q-card-section align="center" class="q-gutter-md">
+                    <div class="">
+                     Please click CONFIRM if you want to receive the document.
                     </div>
                   </q-card-section>
                   <q-card-actions align="center">
@@ -200,7 +78,7 @@
                 @click="dialog = true"
               />
               <q-dialog v-model="dialog" persistent>
-                <q-card style="width: 900px">
+                <q-card style="width: 400px">
                   <q-card-section class="row">
                     <div class="text-h4 text-bold">CODE</div>
                     <q-space />

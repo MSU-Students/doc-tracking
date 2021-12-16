@@ -3,7 +3,7 @@
     <div class="q-pa-md">
       <div class="text-h4 text-bold">
         <q-icon
-          name="local_shipping"
+          name="trending_up"
           color="deep-orange"
           style="font-size: 4rem"
         />
@@ -24,7 +24,7 @@
                 square
                 dense
                 flat
-                icon="search"
+                icon="trending_up"
                 label="Track"
                 color="blue"
               />

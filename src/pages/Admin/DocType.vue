@@ -3,8 +3,8 @@
     <div class="q-pa-md">
       <div class="text-h4 text-bold">
         <q-icon
-          name="local_shipping"
-          color="deep-orange"
+          name="assignment"
+          color="pink-5"
           style="font-size: 4rem"
         />
         Documents Type

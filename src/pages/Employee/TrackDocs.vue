@@ -3,7 +3,7 @@
   <div class="q-pa-md">
     <div class="text-h4 text-bold">
       <q-icon
-        name="local_shipping"
+        name="stacked_line_chart"
         color="deep-orange"
         style="font-size: 4rem"
       />
@@ -17,7 +17,7 @@
       <q-input filled bottom-slots v-model="text" placeholder="Enter the barcode here">
 
         <template v-slot:after>
-          <q-btn square dense flat icon="search"  label="Track" color="blue"/>
+          <q-btn square dense flat icon="stacked_line_chart"  label="Track" color="blue"/>
         </template>
       </q-input>
 

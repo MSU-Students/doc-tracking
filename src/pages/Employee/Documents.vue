@@ -3,7 +3,7 @@
     <div class="q-pa-md">
       <div class="text-h4 text-bold">
         <q-icon
-          name="local_shipping"
+          name="topic"
           color="deep-orange"
           style="font-size: 4rem"
         />
@@ -42,54 +42,6 @@
             <template v-slot:body-cell-Actions="props">
               <q-td :props="props">
                 <div class="q-gutter-sm">
-                  <q-btn
-                    round
-                    color="blue"
-                    icon="more_vert"
-                    size="md"
-                    flat
-                    dense
-                    @click="Details = true"
-                  />
-                  <q-dialog v-model="Details">
-                    <q-card
-                      style="width: 800px; max-width: 100vw"
-                      flat
-                      bordered
-                    >
-                      <q-card-section>
-                        <div class="text-h6 text-center">
-                          HISTORY
-                          <q-btn
-                            round
-                            flat
-                            dense
-                            icon="close"
-                            class="float-right"
-                            color="grey-8"
-                            v-close-popup
-                          ></q-btn>
-                        </div>
-                      </q-card-section>
-                      <q-separator />
-                      <q-card-section>
-                        <div>DATE RECEIVED:</div>
-                        <div>CODE:</div>
-                        <div>Status:</div>
-                      </q-card-section>
-                      <q-card-section>
-                        <q-table
-                          title="Document Details"
-                          :rows="Peekrows"
-                          :columns="Peekcolumns"
-                          row-key="peek"
-                          :rows-per-page-options="[0]"
-                          :filter="filter"
-                        >
-                        </q-table>
-                      </q-card-section>
-                    </q-card>
-                  </q-dialog>
 
                   <q-btn
                     round
@@ -162,7 +114,7 @@
                   </q-dialog>
                   <q-btn
                     round
-                    color="green-7"
+                    color="red"
                     icon="print"
                     size="sm"
                     flat
@@ -170,7 +122,7 @@
                     @click="dialog = true"
                   />
                   <q-dialog v-model="dialog" persistent>
-                    <q-card style="width: 900px">
+                    <q-card style="width: 400px">
                       <q-card-section class="row">
                         <div class="text-h4 text-bold">CODE</div>
                         <q-space />
@@ -191,7 +143,7 @@
                         />
                         <q-btn
                           flat
-                          label="Save"
+                          label="Print"
                           color="primary"
                           v-close-popup
                         />

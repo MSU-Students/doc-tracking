@@ -3,7 +3,7 @@
   <div class="q-pa-md">
     <div class="text-h4 text-bold">
       <q-icon
-        name="local_shipping"
+        name="mark_as_unread"
         color="deep-orange"
         style="font-size: 4rem"
       />
@@ -116,50 +116,6 @@
       <template v-slot:body-cell-Actions="props">
         <q-td :props="props">
           <div class="q-gutter-sm">
-               
-                <q-btn
-              round
-              color="blue"
-              icon="more_vert"
-              size="md"
-              flat
-              dense
-              @click="Details = true"
-            />
-            <q-dialog v-model="Details">
-              <q-card style="width: 800px; max-width: 100vw" flat bordered>
-                <q-card-section>
-                  <div class="text-h6 text-center">
-                    PREVIEW DETAILS
-                    <q-btn
-                      round
-                      flat
-                      dense
-                      icon="close"
-                      class="float-right"
-                      color="grey-8"
-                      v-close-popup
-                    ></q-btn>
-                  </div>
-                </q-card-section>
-                <q-separator />
-                <q-card-section>
-                  <div>TITLE:</div>
-                  <div>DESCRIPTION:</div>
-                </q-card-section>
-                <q-card-section>
-                  <q-table
-                    title="Document Details"
-                    :rows="Peekrows"
-                    :columns="Peekcolumns"
-                    row-key="peek"
-                    :rows-per-page-options="[0]"
-                    :filter="filter"
-                  >
-                  </q-table>
-                </q-card-section>
-              </q-card>
-            </q-dialog>
 
             <q-btn
               round
@@ -171,7 +127,7 @@
               @click="editRow = true"
             />
             <q-dialog v-model="editRow" persistent>
-              <q-card style="width: 700px; max-width: 50vw">
+              <q-card style="width: 500px; max-width: 50vw">
                 <q-card-section class="row">
                   <div class="text-h6">Document</div>
                   <q-space />
@@ -199,7 +155,7 @@
                        label="Status"
                       />
                       <br/>
-         <div class="text-subtitle1 text-bold">To:</div>
+                 <div class="text-subtitle1 text-bold">To:</div>
                     <q-select
                      class="bg-white"
                     outlined
@@ -209,7 +165,7 @@
                        label="Office"
                       />
                        <br/>
-         <div class="text-subtitle1 text-bold">To:</div>
+                 <div class="text-subtitle1 text-bold">To:</div>
                     <q-select
                      class="bg-white"
                     outlined
@@ -224,7 +180,7 @@
                 </q-card-section>
                 <q-card-actions align="right">
                   <q-btn flat label="Cancel" color="red-10" v-close-popup />
-                  <q-btn flat label="Save" color="primary" v-close-popup />
+                  <q-btn flat label="Send" color="primary" v-close-popup />
                 </q-card-actions>
               </q-card>
             </q-dialog>
@@ -238,7 +194,7 @@
               @click="dialog = true"
             />
             <q-dialog v-model="dialog" persistent>
-              <q-card style="width: 900px">
+              <q-card style="width: 400px">
                 <q-card-section class="row">
                   <div class="text-h4 text-bold">CODE</div>
                   <q-space />
