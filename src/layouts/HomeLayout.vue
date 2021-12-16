@@ -6,28 +6,49 @@
       style="height: 730px"
       class="shadow-2 rounded-borders"
     >
-      <q-header elevated class="bg-black" style="height: 50px">
+      <q-header elevated class="bg-pink" style="height: 50px">
         <q-toolbar>
           <q-btn flat @click="drawer = !drawer" round dense icon="menu" />
           <q-toolbar-title>MSU Document Tracking</q-toolbar-title>
-          <div class="flex flex-right">
-            <q-btn
-              round
-              color="black"
-              icon="settings"
-              >
-        <q-menu>
-          <q-list style="min-width: 100px">
-            <q-item clickable v-close-popup>
-              <q-item-section>Profile</q-item-section>
-            </q-item>
-            <q-item clickable v-close-popup to="Login">
-              <q-item-section>Logout</q-item-section>
-            </q-item>
-           
-          </q-list>
-        </q-menu>
-      </q-btn>
+         <div class="flex flex-right">
+            <q-btn round dense icon="settings">
+              <q-menu>
+                <div class="row no-wrap q-pa-lg">
+                  <div class="column items-center">
+                    <q-avatar size="72px">
+                      <img src="../assets/pics.jpg" />
+                    </q-avatar>
+
+                    <div class="text-subtitle6 q-mt-md q-mb-xs">Inshidar P. Panganting</div>
+                    <q-separator horizontal inset class="q-mx-lg" />
+
+                    <q-card
+                      class="flex flex-center q-mb-lg"
+                      style="width: 150px; height: 80px"
+                    >
+                      <q-btn
+                        icon="person"
+                        color="primary"
+                        label="Profile"
+                        push
+                        size="sm"
+                        v-close-popup to="AdminProfile"
+                      />
+                      <q-separator />
+                      <q-btn
+                        icon="logout"
+                        color="primary"
+                        label="Logout"
+                        push
+                        size="sm"
+                        v-close-popup
+                        to="Login"
+                      />
+                    </q-card>
+                  </div>
+                </div>
+              </q-menu>
+            </q-btn>
           </div>
         </q-toolbar>
       </q-header>
@@ -37,7 +58,7 @@
             
           <q-item clickable v-ripple to="AllDoc">
             <q-item-section avatar>
-              <q-icon name="inbox" />
+              <q-icon name="description" />
             </q-item-section>
 
             <q-item-section> All Documents </q-item-section>
@@ -45,7 +66,7 @@
 
           <q-item active clickable v-ripple to="TrackDoc">
             <q-item-section avatar>
-              <q-icon name="star" />
+              <q-icon name="trending_up" />
             </q-item-section>
 
             <q-item-section> Track Document </q-item-section>
@@ -53,7 +74,7 @@
 
           <q-item clickable v-ripple to="DocType">
             <q-item-section avatar>
-              <q-icon name="send" />
+              <q-icon name="assignment" />
             </q-item-section>
 
             <q-item-section> Documents Type </q-item-section>
@@ -61,7 +82,7 @@
 
           <q-item clickable v-ripple to="Office">
             <q-item-section avatar>
-              <q-icon name="drafts" />
+              <q-icon name="apartment" />
             </q-item-section>
 
             <q-item-section> Office </q-item-section>
@@ -69,7 +90,7 @@
 
           <q-item clickable v-ripple to="ManageAccount">
             <q-item-section avatar>
-              <q-icon name="drafts" />
+              <q-icon name="people_alt" />
             </q-item-section>
 
             <q-item-section> Manage Account </q-item-section>
@@ -107,7 +128,7 @@ export default {
 <style>
 .bg-image
 {
-  background-image: url(../assets/image8.jpg);
+  background-image: url(../assets/image29.jpg);
   background-blend-mode: overlay;
   background-position: center;
   background-size: 100%;
