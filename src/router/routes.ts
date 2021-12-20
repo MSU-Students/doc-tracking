@@ -23,10 +23,7 @@ const routes: RouteRecordRaw[] = [
       { path: '/TrackDoc', component: () => import('pages/Admin/TrackDoc.vue') },
       { path: '/DocType', component: () => import('pages/Admin/DocType.vue') },
       { path: '/Office', component: () => import('pages/Admin/Office.vue') },
-      {
-        path: 'ManageAccount',
-        component: () => import('pages/Admin/ManageAccount.vue'),
-      },
+      { path: '/Users', component: () => import('src/pages/Admin/Users.vue'),},
     ],
   },
   {

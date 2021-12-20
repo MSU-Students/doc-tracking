@@ -1,153 +1,203 @@
 <template>
-  <q-page class="bg-image">
-    <div class="q-pa-md">
-      <div class="text-h4 text-bold">
-        <q-icon
-          name="apartment"
-          color="blue-10"
-          style="font-size: 4rem"
-        />
-        Office
-      </div>
+<q-page class="q-pa-lg bg-image">
+    <div class="text-h4 text-bold">
+      <q-icon
+        name="assignment"
+        color="light-blue-6"
+        style="font-size: 4rem"
+      />
+      Office
+    </div>
 
-      <br />
+    <br />
 
-      <q-table
-        title="Records"
-        :rows="rows"
-        :columns="columns"
-        row-key="name"
-        :rows-per-page-options="[0]"
-        :filter="filter"
-      >
-        <template v-slot:top-right>
-          <div class="q-pa-md q-gutter-sm row">
-            <q-input
-              outlined
-              rounded
-              dense
-              debounce="300"
-              v-model="filter"
-              placeholder="Search"
-            >
-              <template v-slot:append>
-                <q-icon name="search" />
-              </template>
-            </q-input>
+    <q-table
+      title="Records"
+      :rows="offices"
+      :columns="columns"
+      row-key="name"
+      :rows-per-page-options="[0]"
+      :filter="filter"
+    >
+      <template v-slot:top-right>
+       <div class="q-pa-md q-gutter-sm row">
+         <q-input
+            outlined
+            rounded
+            dense
+            debounce="300"
+            v-model="filter"
+            placeholder="Search"
+          >
+            <template v-slot:append>
+              <q-icon name="search" />
+            </template>
+          </q-input>
+          <q-btn
+            label="Create Office"
+            color="primary"
+            e
+            dense
+            flat
+            icon="add"
+            @click="onNewOffice()"
+          />
+        </div>
+      </template>
+
+      <template v-slot:body-cell-action="props">
+        <q-td :props="props">
+          <div class="q-gutter-sm">
             <q-btn
-              label="Create Office"
-              color="primary"
-              dense
-              size="13px"
+              round
+              color="blue"
+              icon="edit"
+              size="sm"
               flat
-              icon="add"
-              @click="addUser = true"
+              dense
+              @click="onEditOffice(props.row)"
             />
-            <q-dialog v-model="addUser" persistent>
-              <q-card style="width: 900px">
+
+            <q-btn
+              color="red-10"
+              icon="delete"
+              size="sm"
+              class="q-ml-sm"
+              flat
+              round
+              dense
+              @click="onDeleteOffice(props.row)"
+            />
+            <q-dialog v-model="activeUser" persistent>
+              <q-card style="width: 400px; max-width: 100vw" class="q-pa-sm">
                 <q-card-section class="row">
-                  <div class="text-h6">Create Office</div>
+                  <div class="text-h6" v-if="editRow">Edit User</div>
+                  <div class="text-h6" v-else>Add Office</div>
                   <q-space />
                   <q-btn flat round dense icon="close" v-close-popup />
                 </q-card-section>
 
-                <q-card-section class="q-gutter-md">
-                  <div class="center-7">
+                <q-card-section class="q-gutter-md row">
+                  <div class="col">
                     <div class="text-subtitle1 text-bold">Office</div>
-                    <q-input outlined dense />
-                  </div>
+                    <q-input
+                            outlined dense
+                            v-model="presentOffice.office"
+                          />                 
+                   </div>
                 </q-card-section>
 
                 <q-card-actions align="right">
                   <q-btn flat label="Cancel" color="red-10" v-close-popup />
-                  <q-btn flat label="Add" color="primary" v-close-popup />
+                  <q-btn flat label="Save" color="primary" @click="onSaveOffice" v-close-popup />
+                </q-card-actions>
+              </q-card>
+            </q-dialog>
+            <q-dialog v-model="confirmDelete" persistent>
+              <q-card style="width: 300px">
+                <q-card-section class="row items-center">
+                  <q-avatar
+                    size="sm"
+                    icon="warning"
+                    color="red-10"
+                    text-color="white"
+                  />
+                  <span class="q-ml-sm">Confirm Delete {{presentOffice.office}}?</span>
+                </q-card-section>
+                <q-card-actions align="right">
+                  <q-btn
+                    flat
+                    label="Cancel"
+                    color="primary"
+                    v-close-popup="cancelEnabled"
+                    :disable="!cancelEnabled"
+                  />
+                  <q-btn flat label="Confirm" @click="onCofirmDelete" color="primary" v-close-popup />
                 </q-card-actions>
               </q-card>
             </q-dialog>
           </div>
-        </template>
-
-        <template v-slot:body-cell-Actions="props">
-          <q-td :props="props">
-            <div class="q-gutter-sm">
-              <q-btn
-                round
-                color="blue"
-                icon="edit"
-                size="sm"
-                flat
-                dense
-                @click="editRow = true"
-              />
-              <q-dialog v-model="editRow" persistent>
-                <q-card style="width: 900px">
-                  <q-card-section class="row">
-                    <div class="text-h6">Edit Office</div>
-                    <q-space />
-                    <q-btn flat round dense icon="close" v-close-popup />
-                  </q-card-section>
-
-                  <q-card-section class="q-gutter-md">
-                    <div class="center-7">
-                      <div class="text-subtitle1 text-bold">Office</div>
-                      <q-input outlined dense />
-                    </div>
-                  </q-card-section>
-                  <q-card-actions align="right">
-                    <q-btn flat label="Cancel" color="red-10" v-close-popup />
-                    <q-btn flat label="Save" color="primary" v-close-popup />
-                  </q-card-actions>
-                </q-card>
-              </q-dialog>
-            </div>
-          </q-td>
-        </template>
-      </q-table>
-    </div>
-  </q-page>
+        </q-td>
+      </template>
+    </q-table>
+</q-page>
 </template>
-
 <script lang="ts">
+import { OfficeInfo } from 'src/store/office/state';
 import { Vue, Options } from 'vue-class-component';
-interface IRow {
-  office: string;
-}
+import { mapActions, mapState } from 'vuex';
 
-@Options({})
+
+@Options({
+  computed: {
+    ...mapState('office', ['offices', 'activeOffice'])
+  },
+  methods: {
+    ...mapActions('office', ['newOffice', 'editOffice', 'deleteOffice'])
+  }
+})
 export default class ManageAccount extends Vue {
-  columns = [
+
+  //vuex properties
+  offices!:OfficeInfo[];
+  newOffice!:(office:OfficeInfo) => Promise<void>;
+  editOffice!:(office:OfficeInfo) => Promise<void>;
+  deleteOffice!:(office:OfficeInfo) => Promise<void>;
+  //local
+   columns = [
     {
       name: 'office',
       required: true,
       label: 'OFFICE',
       align: 'left',
-      field: (row: IRow) => row.office,
+      field: (row: OfficeInfo) => row.office,
       format: (val: string) => `${val}`,
     },
-    { name: 'Actions', align: 'center', label: 'Actions', field: 'Actions' },
-  ];
-  rows = [
-    {
-      office: 'Accounting',
-    },
-    {
-      office: 'HRDO',
-    },
-    {
-      office: 'Budget Office',
-    },
+    
+    { name: 'action', align: 'center', label: 'Action', field: 'action' },
   ];
 
-  dialog = false;
+  confirmDelete = false;
   cancelEnabled = true;
-  addUser = false;
+  activeUser = false;
   editRow = false;
-  code = '';
-  files = '';
+
+  defaultOffice: OfficeInfo = {
+    idNumber: '',
+    office: '',
+   
+    
+  }
+
+  presentOffice = {...this.defaultOffice};
   filter = '';
 
-  onItemClick() {
-    console.log('Clicked!');
+  onNewOffice() {
+    this.presentOffice =  {...this.defaultOffice};
+    this.editRow = false;
+    this.activeUser = true;
+  }
+
+  onEditOffice(office:OfficeInfo) {
+    this.presentOffice = {...office};
+    this.editRow = true;
+    this.activeUser = true;
+  }
+  onDeleteOffice(office:OfficeInfo) {
+    this.presentOffice = {...office};
+    this.confirmDelete = true;
+  }
+
+  async onSaveOffice() {
+    if (!this.editRow) {
+      await this.newOffice(this.presentOffice);
+    } else {
+      await this.editOffice(this.presentOffice);
+    }
+  }
+  async onCofirmDelete() {
+    await this.deleteOffice(this.presentOffice);
+    this.confirmDelete = false;
   }
 }
 </script>
