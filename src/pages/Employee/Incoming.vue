@@ -126,10 +126,10 @@ export default class ManageAccount extends Vue {
       format: (val: string) => `${val}`,
     },
     {
-      name: 'document',
+      name: 'file',
       align: 'center',
-      label: 'DOCUMENTS',
-      field: 'document',
+      label: 'FILE/PHOTO',
+      field: 'file',
     },
     {
       name: 'type',
@@ -197,7 +197,7 @@ export default class ManageAccount extends Vue {
   editRow = false;
   Details = false;
   code = '';
-  document = '';
+  file = '';
   type = '';
   date = '';
   time = '';

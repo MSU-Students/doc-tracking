@@ -22,6 +22,7 @@ const routes: RouteRecordRaw[] = [
       { path: '/AllDoc', component: () => import('pages/Admin/AllDoc.vue') },
       { path: '/TrackDoc', component: () => import('pages/Admin/TrackDoc.vue') },
       { path: '/DocType', component: () => import('pages/Admin/DocType.vue') },
+      { path: '/Position', component: () => import('src/pages/Admin/Position.vue') },
       { path: '/Office', component: () => import('pages/Admin/Office.vue') },
       { path: '/Users', component: () => import('src/pages/Admin/Users.vue'),},
     ],

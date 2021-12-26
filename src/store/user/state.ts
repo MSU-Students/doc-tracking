@@ -5,7 +5,8 @@ export interface UserInfo {
   LName: string;
   username: string;
   password: string;
-  email: string;
+  office: string;
+  position: string;
   role: string;
   status: 'Active' | 'Inactive';
 }
@@ -19,12 +20,13 @@ function state(): UserStateInterface {
 return {
   users: [
     {
-      FName: 'Inshidar',
+        FName: 'Inshidar',
         MName: 'P',
         LName: 'Panganting',
         username: 'Shy',
         password: 'shyee',
-        email: 'shy@gmail.com',
+        office: 'CICS',
+        position: 'Chairperson',
         role: 'Admin',
         status: 'Active',
       },
@@ -34,7 +36,8 @@ return {
         LName: 'Panganting',
         username: 'Aly',
         password: 'Alyee',
-        email: 'al@gmail.com',
+        office: 'HRDO',
+        position: 'Secretary',
         role: 'Employee',
         status: 'Active',
       },

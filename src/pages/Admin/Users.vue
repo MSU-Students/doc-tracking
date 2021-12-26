@@ -2,7 +2,7 @@
  <q-page class="q-pa-lg bg-image">
     <div class="text-h4 text-bold">
       <q-icon
-        name="account_circle"
+        name="group_add"
         color="light-blue-6"
         style="font-size: 4rem"
       />
@@ -100,8 +100,33 @@
                     v-model="presentUser.LName"
                   />
                 </div>
-
                 </q-card-section>
+
+                <q-card-section class="q-gutter-md row">
+                  <div class="col">
+                  <div class="text-subtitle1 text-bold">Office</div>
+                  <q-input
+                    outlined dense
+                    v-model="presentUser.office"
+                  />
+                </div>
+                <div class="col">
+                  <div class="text-subtitle1 text-bold">Position</div>
+                  <q-input
+                    outlined dense
+                    v-model="presentUser.position"
+                  />
+                </div>
+                <div class="col">
+                   <div class="text-subtitle1 text-bold">Role</div>
+                  <q-select
+                    outlined dense
+                    v-model="presentUser.role"
+                    :options="options"
+                  />
+                </div>
+                </q-card-section>
+
                 <q-card-section class="q-gutter-md row">
                   <div class="col">
                    <div class="text-subtitle1 text-bold">Username</div>
@@ -117,24 +142,6 @@
                     v-model="presentUser.password"
                   />
                   </div>
-                </q-card-section>
-
-                <q-card-section class="q-gutter-md row">
-                  <div class="col">
-                  <div class="text-subtitle1 text-bold">Email</div>
-                  <q-input
-                    outlined dense
-                    v-model="presentUser.email"
-                  />
-                </div>
-                <div class="col">
-                   <div class="text-subtitle1 text-bold">Role</div>
-                  <q-select
-                    outlined dense
-                    v-model="presentUser.role"
-                    :options="options"
-                  />
-                </div>
                 </q-card-section>
 
                 <q-card-actions align="right">
@@ -197,22 +204,35 @@ export default class ManageAccount extends Vue {
   //local
    columns = [
     {
+      name: 'username',
+      align: 'left',
+      label: 'Username',
+      field: 'username',
+    },
+      {
       name: 'name',
       required: true,
       label: 'Name',
-      align: 'left',
+      align: 'center',
       field: (row: UserInfo) =>
         row.FName + ' ' + row.MName + '. ' + row.LName,
       format: (val: string) => `${val}`,
     },
     {
-      name: 'email',
+      name: 'office',
       align: 'center',
-      label: 'Email',
-      field: 'email',
+      label: 'Office',
+      field: 'office',
+    },
+    {
+      name: 'position',
+      align: 'center',
+      label: 'Position',
+      field: 'position',
     },
     { name: 'role', align: 'center', label: 'Role', field: 'role' },
     { name: 'status', align: 'center', label: 'Status', field: 'status' },
+    { name: 'password', align: 'center', label: 'Password', field: 'password' },
     { name: 'action', align: 'center', label: 'Action', field: 'action' },
   ];
   confirmDelete = false;
@@ -226,7 +246,8 @@ export default class ManageAccount extends Vue {
     LName: '',
     username: '',
     password: '',
-    email: '',
+    office: '',
+    position: '',
     role: '',
     status: 'Active',
   }

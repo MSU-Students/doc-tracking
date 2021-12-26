@@ -3,7 +3,10 @@ import { StateInterface } from '../index';
 import { DoctypeStateInterface, DoctypeInfo } from './state';
 
 const actions: ActionTree<DoctypeStateInterface, StateInterface> = {
-  newDoctype (context, newDoctype: DoctypeInfo) {
+  viewAllDocType(context) {
+    context.commit('viewAllDocType');
+  },
+  newDoctype(context, newDoctype: DoctypeInfo) {
     //call server api
     context.commit('addDoctype', newDoctype);
   },
@@ -13,7 +16,7 @@ const actions: ActionTree<DoctypeStateInterface, StateInterface> = {
   },
   deleteDoctype(context, targetDoctype: DoctypeInfo) {
     context.commit('removeDoctype', targetDoctype);
-  }
+  },
 };
 
 export default actions;

@@ -1,226 +1,60 @@
 <template>
-  <q-page class="bg-image">
-    <div class="q-pa-md">
-      <div class="text-h4 text-bold">
-        <q-icon
-          name="description"
-          color="green"
-          style="font-size: 4rem"
-        />
-        All Documents
-      </div>
+  <q-page class="q-pa-lg bg-image">
+    <div class="text-h4 text-bold">
+      <q-icon name="description" color="light-blue-6" style="font-size: 4rem" />
+      All Documents
+    </div>
 
-      <br />
+    <br />
 
-      <q-table
-        title="Records"
-        :rows="rows"
-        :columns="columns"
-        row-key="name"
-        :rows-per-page-options="[0]"
-        :filter="filter"
-      >
-        <template v-slot:top-right>
-          <div class="q-pa-md q-gutter-sm row">
-            <q-input
-              outlined
-              rounded
-              dense
-              debounce="300"
-              v-model="filter"
-              placeholder="Search"
-            >
-              <template v-slot:append>
-                <q-icon name="search" />
-              </template>
-            </q-input>
+    <q-table
+      title="Records"
+      :rows="alldocs"
+      :columns="columns"
+      row-key="name"
+      :rows-per-page-options="[0]"
+      :filter="filter"
+    >
+      <template v-slot:top-right>
+        <div class="q-pa-md q-gutter-sm row">
+          <q-input
+            outlined
+            rounded
+            dense
+            debounce="300"
+            v-model="filter"
+            placeholder="Search"
+          >
+            <template v-slot:append>
+              <q-icon name="search" />
+            </template>
+          </q-input>
+          <q-btn
+            label="Create Document"
+            color="primary"
+            e
+            dense
+            flat
+            icon="add"
+            @click="onNewAlldoc()"
+          />
+        </div>
+      </template>
+
+      <template v-slot:body-cell-action="props">
+        <q-td :props="props">
+          <div class="q-gutter-sm">
             <q-btn
-              label="Create Documents"
-              color="primary"
-              dense
-              size="13px"
+              round
+              color="blue"
+              icon="edit"
+              size="sm"
               flat
-              icon="add"
-              @click="addUser = true"
+              dense
+              @click="onEditAlldoc(props.row)"
             />
-            <q-dialog v-model="addUser" persistent>
-              <q-card style="width: 900px">
-                <q-card-section class="row">
-                  <div class="text-h6">Add Documents</div>
-                  <q-space />
-                  <q-btn flat round dense icon="close" v-close-popup />
-                </q-card-section>
 
-                <q-card-section class="q-gutter-md">
-                  <div class="row">
-                    <div class="col col-md-8">
-                      <q-input
-                        class="q-py-md"
-                        outlined
-                        v-model="code"
-                        label="CODE"
-                      />
-                      <q-uploader
-                        label="Auto Uploader"
-                        auto-upload
-                        url="http://localhost:4444/upload"
-                        multiple
-                      />
-                      <q-input
-                        class="q-py-md"
-                        outlined
-                        v-model="type"
-                        label="TYPE"
-                      />
-                    </div>
-                    <div class="col-md-4 q-pl-md">
-                      <q-input
-                        class="q-py-md"
-                        outlined
-                        v-model="date"
-                        label="DATE"
-                      />
-                      <q-input
-                        class="q-py-md"
-                        outlined
-                        v-model="time"
-                        label="TIME"
-                      />
-
-                      <div class="q-py-md">
-                        <q-file
-                          v-model="files"
-                          label="Upload File"
-                          filled
-                          multiple
-                          style="max-width: 300px"
-                        >
-                          <template v-slot:prepend>
-                            <q-icon name="photo_camera" />
-                          </template>
-                        </q-file>
-                      </div>
-                    </div>
-                  </div>
-                </q-card-section>
-
-                <q-card-actions align="right">
-                  <q-btn flat label="Cancel" color="red-10" v-close-popup />
-                  <q-btn flat label="Add" color="primary" v-close-popup />
-                </q-card-actions>
-              </q-card>
-            </q-dialog>
-          </div>
-        </template>
-
-        <template v-slot:body-cell-Actions="props">
-          <q-td :props="props">
-            <div class="q-gutter-sm">
-              <q-btn
-                round
-                color="blue"
-                icon="edit"
-                size="sm"
-                flat
-                dense
-                @click="editRow = true"
-              />
-              <q-dialog v-model="editRow" persistent>
-                <q-card style="width: 900px; max-width: 80vw">
-                  <q-card-section class="row">
-                    <div class="text-h6">Edit Documents</div>
-                    <q-space />
-                    <q-btn flat round dense icon="close" v-close-popup />
-                  </q-card-section>
-
-                  <q-card-section class="q-gutter-md">
-                    <div class="row">
-                      <div class="col col-md-8">
-                        <q-input
-                          class="q-py-md"
-                          outlined
-                          v-model="code"
-                          label="CODE"
-                        />
-                        <q-input
-                          class="q-py-md"
-                          outlined
-                          v-model="document"
-                          label="DOCUMENTS"
-                        />
-                        <q-input
-                          class="q-py-md"
-                          outlined
-                          v-model="type"
-                          label="TYPE"
-                        />
-                      </div>
-                      <div class="col-md-4 q-pl-md">
-                        <q-input
-                          class="q-py-md"
-                          outlined
-                          v-model="date"
-                          label="DATE"
-                        />
-                        <q-input
-                          class="q-py-md"
-                          outlined
-                          v-model="time"
-                          label="time"
-                        />
-
-                        <div class="q-py-md">
-                          <q-file
-                            v-model="files"
-                            label="Upload File"
-                            filled
-                            multiple
-                            style="max-width: 300px"
-                          >
-                            <template v-slot:prepend>
-                              <q-icon name="photo_camera" />
-                            </template>
-                          </q-file>
-                        </div>
-                      </div>
-                    </div>
-                  </q-card-section>
-                  <q-card-actions align="right">
-                    <q-btn flat label="Cancel" color="red-10" v-close-popup />
-                    <q-btn flat label="Save" color="primary" v-close-popup />
-                  </q-card-actions>
-                </q-card>
-              </q-dialog>
-              <q-btn
-                round
-                color="green"
-                icon="print"
-                size="sm"
-                flat
-                dense
-                @click="dialog = true"
-              />
-              <q-dialog v-model="dialog" persistent>
-                <q-card style="width: 400px">
-                  <q-card-section class="row">
-                    <div class="text-h4 text-bold">CODE</div>
-                    <q-space />
-                    <q-btn flat round dense icon="close" v-close-popup />
-                  </q-card-section>
-
-                  <q-card-section class="q-gutter-md">
-                    <div class="center-7">
-                      <q-input outlined dense />
-                    </div>
-                  </q-card-section>
-                  <q-card-actions align="right">
-                    <q-btn flat label="Cancel" color="red-10" v-close-popup />
-                    <q-btn flat label="Save" color="primary" v-close-popup />
-                  </q-card-actions>
-                </q-card>
-              </q-dialog>
-
-              <q-btn
+            <q-btn
               color="red-10"
               icon="delete"
               size="sm"
@@ -228,9 +62,134 @@
               flat
               round
               dense
-              @click="del = true"
+              @click="onDeleteAlldoc(props.row)"
             />
-            <q-dialog v-model="del" persistent>
+
+            <q-dialog v-model="activeUser" persistent>
+              <q-card style="width: 350px; max-width: 100vw" class="q-pa-sm">
+                <q-card-section class="row">
+                  <div class="text-h6" v-if="editRow">Edit Document</div>
+                  <div class="text-h6" v-else>New Document</div>
+                  <q-space />
+                  <q-btn flat round dense icon="close" v-close-popup />
+                </q-card-section>
+
+                <q-card-section class="q-gutter-md row">
+                  <div class="col">
+                    <div class="text-subtitle1 text-bold">Upload File:</div>
+                    <q-uploader
+                      label="Documents"
+                      auto-upload
+                      url="http://localhost:4444/upload"
+                      multiple
+                    />
+                  </div>
+                </q-card-section>
+
+                <q-card-section class="q-gutter-md row">
+                  <div class="col">
+                    <div class="text-subtitle1 text-bold">CODE</div>
+                    <q-input outlined dense v-model="presentAlldoc.code" />
+                  </div>
+                </q-card-section>
+
+                <q-card-section class="q-gutter-md row">
+                  <div class="col">
+                    <div class="text-subtitle1 text-bold">DOCUMENT TYPE</div>
+                    <q-select
+                      class="bg-white"
+                      outlined
+                       v-model="presentAlldoc.type"
+                      :options="getDocsType"
+                      dense
+                      label="Document"
+                    />
+                  </div>
+                </q-card-section>
+
+                <q-card-section class="q-gutter-md row">
+                  <div class="col">
+                    <div class="text-subtitle1 text-bold">DATE</div>
+                    <q-input
+                      outlined
+                      dense
+                      v-model="presentAlldoc.date"
+                      type="date"
+                    />
+                  </div>
+                </q-card-section>
+
+                <q-card-actions align="right">
+                  <q-btn flat label="Cancel" color="red-10" v-close-popup />
+                  <q-btn
+                    flat
+                    label="Save"
+                    color="primary"
+                    @click="onSaveAlldoc"
+                    v-close-popup
+                  />
+                </q-card-actions>
+              </q-card>
+            </q-dialog>
+
+            <q-btn
+             round
+             color="green-10"
+             icon="send"
+             size="sm"
+             flat
+             dense
+              @click="sending = true"
+            />
+                  <q-dialog v-model="sending" persistent>
+                    <q-card style="width: 900px">
+                      <q-card-section class="row">
+                        <div class="text-h4 text-bold">SEND</div>
+                        <q-space />
+                        <q-btn flat round dense icon="close" v-close-popup />
+                      </q-card-section>
+
+                      <q-card-section class="q-gutter-md">
+                        <div class="center-7">
+                          <div class="text-subtitle1 text-bold">To:</div>
+                          <q-select
+                            class="bg-white"
+                            outlined
+                            v-model="unitOffice"
+                            :options="getOffice"
+                            dense
+                            label="Office"
+                          />
+                          <br />
+                          <div class="text-subtitle1 text-bold">To:</div>
+                          <q-select
+                            class="bg-white"
+                            outlined
+                            v-model="unitProf"
+                            :options="getProf"
+                            dense
+                            label="Employee"
+                          />
+                        </div>
+                      </q-card-section>
+                      <q-card-actions align="right">
+                        <q-btn
+                          flat
+                          label="Cancel"
+                          color="red-10"
+                          v-close-popup
+                        />
+                        <q-btn
+                          flat
+                          label="Send"
+                          color="primary"
+                          v-close-popup
+                        />
+                      </q-card-actions>
+                    </q-card>
+                  </q-dialog>
+
+            <q-dialog v-model="confirmDelete" persistent>
               <q-card style="width: 300px">
                 <q-card-section class="row items-center">
                   <q-avatar
@@ -239,8 +198,11 @@
                     color="red-10"
                     text-color="white"
                   />
-                  <span class="q-ml-sm">Confirm Delete?</span>
+                  <span class="q-ml-sm"
+                    >Confirm Delete {{ presentAlldoc.code }}?</span
+                  >
                 </q-card-section>
+
                 <q-card-actions align="right">
                   <q-btn
                     flat
@@ -249,51 +211,67 @@
                     v-close-popup="cancelEnabled"
                     :disable="!cancelEnabled"
                   />
-                  <q-btn flat label="Confirm" color="primary" v-close-popup />
+                  <q-btn
+                    flat
+                    label="Confirm"
+                    @click="onCofirmDelete"
+                    color="primary"
+                    v-close-popup
+                  />
                 </q-card-actions>
               </q-card>
             </q-dialog>
-
-
-            </div>
-          </q-td>
-        </template>
-      </q-table>
-    </div>
+          </div>
+        </q-td>
+      </template>
+    </q-table>
   </q-page>
 </template>
-
 <script lang="ts">
+import { AlldocInfo } from 'src/store/alldoc/state';
 import { Vue, Options } from 'vue-class-component';
-interface IRow {
-  code: string;
-}
+import { mapActions, mapState, mapGetters } from 'vuex';
 
-interface peekrow {
-  peek: string;
-}
-
-@Options({})
+@Options({
+  computed: {
+    ...mapState('alldoc', ['alldocs', 'activeAlldoc']),
+    ...mapGetters('doctype', ['getDocsType']),
+    ...mapGetters('office', ['getOffice']),
+    ...mapGetters('profession', ['getProf']),
+  },
+  methods: {
+    ...mapActions('alldoc', ['newAlldoc', 'editAlldoc', 'deleteAlldoc']),
+  },
+})
 export default class ManageAccount extends Vue {
+  //vuex properties
+  alldocs!: AlldocInfo[];
+  getDocsType!: string[];
+  getOffice!: string[];
+  getProf!: string[];
+  newAlldoc!: (alldoc: AlldocInfo) => Promise<void>;
+  editAlldoc!: (alldoc: AlldocInfo) => Promise<void>;
+  deleteAlldoc!: (alldoc: AlldocInfo) => Promise<void>;
+  //local
   columns = [
     {
       name: 'code',
       required: true,
       label: 'CODE',
       align: 'left',
-      field: (row: IRow) => row.code,
+      field: (row: AlldocInfo) => row.code,
       format: (val: string) => `${val}`,
     },
     {
-      name: 'document',
+      name: 'file',
       align: 'center',
-      label: 'DOCUMENTS',
-      field: 'document',
+      label: 'FILE/PHOTO',
+      field: 'file',
     },
     {
       name: 'type',
       align: 'center',
-      label: 'TYPE',
+      label: 'Document Type',
       field: 'type',
     },
     {
@@ -302,81 +280,54 @@ export default class ManageAccount extends Vue {
       label: 'DATE',
       field: 'date',
     },
-    { name: 'time', align: 'center', label: 'TIME', field: 'time' },
-    { name: 'Actions', align: 'center', label: 'Actions', field: 'Actions' },
+    { name: 'action', align: 'center', label: 'Action', field: 'action' },
   ];
-  rows = [
-    {
-      code: '20186327',
-      document: 'Testing',
-      type: 'Communication Letter',
-      date: '10/2/2021',
-      time: '2pm',
-    },
-  ];
-  Peekcolumns = [
-    {
-      name: 'peek',
-      required: true,
-      label: 'OFFICE',
-      align: 'left',
-      field: (row: peekrow) => row.peek,
-      format: (val: string) => `${val}`,
-    },
-    {
-      name: 'peektime',
-      align: 'center',
-      label: 'TIME',
-      field: 'peektime',
-    },
-    {
-      name: 'peekoff',
-      align: 'center',
-      label: 'OFFICE',
-      field: 'peekoff',
-    },
-    {
-      name: 'peekremarks',
-      align: 'center',
-      label: 'REMARKS',
-      field: 'peekremarks',
-    },
-    {
-      name: 'peekduration',
-      align: 'center',
-      label: 'DURATION',
-      field: 'peekduration',
-    },
-  ];
-  Peekrows = [
-    {
-      peek: 'Accounting',
-      peektime: '11',
-      peekOff: '11',
-      peekremarks: '100',
-      peekduration: '11',
-    },
-  ];
-  dialog = false;
+  confirmDelete = false;
   cancelEnabled = true;
-  addUser = false;
+  activeUser = false;
   editRow = false;
-  Details = false;
-  del = false;
-  code = '';
-  document = '';
-  type = '';
-  date = '';
-  time = '';
-  text = '';
-  revenue = '';
-  files = '';
-  counterLabelFn = '';
-  filter = '';
-  options = ['Admin', 'Cashier'];
+  sending = false;
 
-  onItemClick() {
-    console.log('Clicked!');
+  unitType = null;
+  unitOffice = null;
+  unitProf = null;
+
+  defaultAlldoc: AlldocInfo = {
+    file: '',
+    code: '',
+    type: '',
+    date: '',
+  }
+
+  presentAlldoc = { ...this.defaultAlldoc };
+  filter = '';
+
+  onNewAlldoc() {
+    this.presentAlldoc = { ...this.defaultAlldoc };
+    this.editRow = false;
+    this.activeUser = true;
+  }
+
+  onEditAlldoc(alldoc: AlldocInfo) {
+    this.presentAlldoc = { ...alldoc };
+    this.editRow = true;
+    this.activeUser = true;
+  }
+  onDeleteAlldoc(alldoc: AlldocInfo) {
+    this.presentAlldoc = { ...alldoc };
+    this.confirmDelete = true;
+  }
+
+  async onSaveAlldoc() {
+    if (!this.editRow) {
+      await this.newAlldoc(this.presentAlldoc);
+    } else {
+      await this.editAlldoc(this.presentAlldoc);
+    }
+  }
+  async onCofirmDelete() {
+    await this.deleteAlldoc(this.presentAlldoc);
+    this.confirmDelete = false;
   }
 }
 </script>

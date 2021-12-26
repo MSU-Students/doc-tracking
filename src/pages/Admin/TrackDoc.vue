@@ -3,7 +3,7 @@
     <div class="q-pa-md">
       <div class="text-h4 text-bold">
         <q-icon
-          name="trending_up"
+          name="my_location"
           color="deep-orange"
           style="font-size: 4rem"
         />
@@ -17,7 +17,7 @@
             filled
             bottom-slots
             v-model="text"
-            placeholder="Enter the barcode here"
+            placeholder="Enter the barcode number here"
           >
             <template v-slot:after>
               <q-btn

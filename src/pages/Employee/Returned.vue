@@ -123,10 +123,10 @@ export default class ManageAccount extends Vue {
       format: (val: string) => `${val}`,
     },
     {
-      name: 'document',
+      name: 'photo',
       align: 'center',
-      label: 'DOCUMENTS',
-      field: 'document',
+      label: 'PHOTO',
+      field: 'photo',
     },
     {
       name: 'status',
@@ -167,7 +167,7 @@ export default class ManageAccount extends Vue {
   editRow = false;
   Details = false;
   code = '';
-  document = '';
+  photo = '';
   employee = '';
   office = '';
   status = '';

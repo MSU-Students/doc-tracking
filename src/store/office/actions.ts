@@ -3,6 +3,9 @@ import { StateInterface } from '../index';
 import { OfficeStateInterface, OfficeInfo } from './state';
 
 const actions: ActionTree<OfficeStateInterface, StateInterface> = {
+  viewAllOffice(context) {
+    context.commit('viewAllOffice');
+  },
   newOffice (context, newOffice: OfficeInfo) {
     //call server api
     context.commit('addOffice', newOffice);

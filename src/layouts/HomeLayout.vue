@@ -60,24 +60,28 @@
             <q-item-section avatar>
               <q-icon name="description" />
             </q-item-section>
-
-            <q-item-section> All Documents </q-item-section>
+            <q-item-section> ALL DOCUMENT </q-item-section>
           </q-item>
 
           <q-item active clickable v-ripple to="TrackDoc">
             <q-item-section avatar>
               <q-icon name="trending_up" />
             </q-item-section>
-
-            <q-item-section> Track Document </q-item-section>
+            <q-item-section> TRACK DOCUMENT </q-item-section>
           </q-item>
 
           <q-item clickable v-ripple to="DocType">
             <q-item-section avatar>
               <q-icon name="assignment" />
             </q-item-section>
-
-            <q-item-section> Documents Type </q-item-section>
+            <q-item-section> DOCUMENT TYPE </q-item-section>
+          </q-item>
+          
+          <q-item clickable v-ripple to="Position">
+            <q-item-section avatar>
+              <q-icon name="person" />
+            </q-item-section>
+            <q-item-section> POSITION </q-item-section>
           </q-item>
 
           <q-item clickable v-ripple to="Office">
@@ -85,15 +89,15 @@
               <q-icon name="apartment" />
             </q-item-section>
 
-            <q-item-section> Office </q-item-section>
+            <q-item-section> OFFICE </q-item-section>
           </q-item>
 
            <q-item clickable v-ripple to="Users">
             <q-item-section avatar>
-              <q-icon name="people" />
+              <q-icon name="group_add" />
             </q-item-section>
 
-            <q-item-section> Users </q-item-section>
+            <q-item-section> USERS </q-item-section>
           </q-item>
 
         </q-list>

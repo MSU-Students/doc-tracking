@@ -165,7 +165,6 @@ export default class ManageAccount extends Vue {
   defaultOffice: OfficeInfo = {
     idNumber: '',
     office: '',
-   
     
   }
 

@@ -15,6 +15,36 @@ import {DoctypeStateInterface } from './doctype/state';
 import user from './user';
 import {UserStateInterface } from './user/state';
 
+import profession from './profession';
+import {ProfStateInterface } from './profession/state';
+
+import alldoc from './alldoc';
+import {AlldocStateInterface } from './alldoc/state';
+
+import document from './document';
+import {DocStateInterface } from './document/state';
+
+import hold from './hold';
+import {HoldStateInterface } from './hold/state';
+
+import incoming from './incoming';
+import {IncomingStateInterface } from './incoming/state';
+
+import receive from './receive';
+import {ReceiveStateInterface } from './receive/state';
+
+import adtrack from './adtrack';
+import {AdtrackStateInterface } from './adtrack/state';
+
+import emptrack from './emptrack';
+import {EmptrackStateInterface } from './emptrack/state';
+
+import back from './back';
+import {BackStateInterface } from './back/state';
+
+import outgoing from './outgoing';
+import {OutgoingStateInterface } from './outgoing/state';
+
 
 
 /*
@@ -33,6 +63,16 @@ export interface StateInterface {
   office: OfficeStateInterface;
   doctype: DoctypeStateInterface;
   user: UserStateInterface;
+  profession: ProfStateInterface;
+  alldoc: AlldocStateInterface;
+  document: DocStateInterface;
+  hold: HoldStateInterface;
+  incoming: IncomingStateInterface;
+  receive: ReceiveStateInterface;
+  adtrack: AdtrackStateInterface;
+  emptrack: EmptrackStateInterface;
+  back: BackStateInterface;
+  outgoung: OutgoingStateInterface;
 }
 
 
@@ -54,7 +94,16 @@ export default store(function (/* { ssrContext } */) {
       office,
       doctype,
       user,
-     
+      profession,
+      alldoc,
+      document,
+      hold,
+      incoming,
+      receive,
+      adtrack,
+      emptrack,
+      back,
+      outgoing,
     },
 
     // enable strict mode (adds overhead!)
